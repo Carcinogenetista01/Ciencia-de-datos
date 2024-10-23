@@ -1,0 +1,443 @@
+\phantomsection\label{main-content}
+{}
+
+\emph{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{../_sources/P1/Induccion.ipynb}{{ \emph{} } {.ipynb}}
+\item
+  { \emph{} } {.pdf}
+\end{itemize}
+
+{ \emph{} }
+
+{}
+
+\phantomsection\label{jb-print-docs-body}
+\section{Principio de inducciÃ³n}\label{principio-de-inducciuxe3uxb3n}
+
+\phantomsection\label{print-main-content}
+\phantomsection\label{jb-print-toc}
+\subsection{Contenido}\label{contenido}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[principio-de-induccion-basico]{Principio de inducciÃ³n
+  bÃ¡sico}
+\item
+  \hyperref[induccion-fuerte]{InducciÃ³n fuerte}
+\item
+  \hyperref[induccion-con-base-mas-grande]{InducciÃ³n con base mÃ¡s
+  grande}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+\phantomsection\label{searchbox}
+
+\phantomsection\label{principio-de-induccion}
+\section{\texorpdfstring{Principio de
+inducciÃ³n\hyperref[principio-de-induccion]{\#}}{Principio de inducciÃ³n\#}}\label{principio-de-inducciuxe3uxb3n-1}
+
+\phantomsection\label{introduccion}
+\subsection{\texorpdfstring{IntroducciÃ³n\hyperref[introduccion]{\#}}{IntroducciÃ³n\#}}\label{introducciuxe3uxb3n}
+
+En esta entrada supondremos que manejas el principio de inducciÃ³n, por
+lo menos a un nivel bÃ¡sico. En caso de no ser asÃ­, te recomendamos
+revisar la siguiente entrada de blog:
+\href{https://blog.nekomath.com/seminario-de-resolucion-de-problemas-principio-de-induccion/}{IntroducciÃ³n
+a principio de inducciÃ³n}.
+
+Como quizÃ¡s recuerdes, el principio de inducciÃ³n permite hacer
+demostraciones matemÃ¡ticas para una cantidad infinita de nÃºmeros,
+probando simplemente una cantidad finita de afirmaciones, usualmente
+dos. En su versiÃ³n mÃ¡s bÃ¡sica dice lo siguiente:
+
+\textbf{Principio de inducciÃ³n.} Para mostrar que una afirmaciÃ³n
+{\textbackslash(P(n)\textbackslash)} es cierta para todo entero positivo
+{\textbackslash(n\textbackslash)} basta con:
+
+\begin{itemize}
+\item
+  Mostrar que {\textbackslash(P(1)\textbackslash)} es cierta.
+\item
+  Mostrar que para {\textbackslash(n\textbackslash geq
+  1\textbackslash)}, se tiene que {\textbackslash(P(n)\textbackslash)}
+  implica {\textbackslash(P(n+1)\textbackslash)}.
+\end{itemize}
+
+En esta entrada recordaremos cÃ³mo usar el principio de inducciÃ³n en su
+versiÃ³n bÃ¡sica y luego discutiremos variantes del principio de
+inducciÃ³n que cumplen con el mismo objetivo, pero son mÃ¡s versÃ¡tiles.
+
+\phantomsection\label{principio-de-induccion-basico}
+\subsection{\texorpdfstring{Principio de inducciÃ³n
+bÃ¡sico\hyperref[principio-de-induccion-basico]{\#}}{Principio de inducciÃ³n bÃ¡sico\#}}\label{principio-de-inducciuxe3uxb3n-buxe3sico}
+
+Para recordar cÃ³mo se usa el principio de inducciÃ³n resolvamos el
+siguiente problema.
+
+\textbf{Problema.} Muestra que para todo entero
+{\textbackslash(n\textbackslash)} se cumple que
+
+\textbackslash{[}\textbackslash frac\{1\}\{1\textbackslash cdot 2\} +
+\textbackslash frac\{1\}\{2\textbackslash cdot 3\} +
+\textbackslash ldots + \textbackslash frac\{1\}\{n\textbackslash cdot
+(n+1)\}=\textbackslash frac\{n\}\{n+1\}\textbackslash{]}
+
+\emph{SoluciÃ³n.} Hagamos una soluciÃ³n que use principio de inducciÃ³n.
+Para ello, necesitamos comenzar verificando que la igualdad es cierta
+cuando {\textbackslash(n=1\textbackslash)}. Luego, a partir de la
+veracidad de la igualdad para cierta {\textbackslash(n\textbackslash)},
+debemos demostrar la veracidad para {\textbackslash(n+1\textbackslash)}.
+
+La veracidad para {\textbackslash(n=1\textbackslash)} es sencilla de
+verificar, pues en lado izquierdo tendrÃ­amos Ãºnicamente al sumando
+{\textbackslash(\textbackslash frac\{1\}\{1\textbackslash cdot 2\} =
+\textbackslash frac\{1\}\{2\}\textbackslash)}, mientras que en el lado
+derecho tendrÃ­amos la expresiÃ³n
+{\textbackslash(\textbackslash frac\{1\}\{2\}\textbackslash)}. Ambas
+expresiones son iguales.
+
+Como hipÃ³tesis inductiva, supongamos la veracidad de la igualdad para
+cierto valor de {\textbackslash(n\textbackslash)}. AquÃ­
+{\textbackslash(n\textbackslash)} es fijo, no estamos suponiendo la
+veracidad para todo {\textbackslash(n\textbackslash)}, pues eso es lo
+que queremos mostrar. De esta manera, tenemos que
+
+\textbackslash{[}\textbackslash frac\{1\}\{1\textbackslash cdot 2\} +
+\textbackslash frac\{1\}\{2\textbackslash cdot 3\} +
+\textbackslash ldots + \textbackslash frac\{1\}\{n\textbackslash cdot
+(n+1)\}=\textbackslash frac\{n\}\{n+1\}.\textbackslash{]}
+
+Debemos mostrar la veracidad para {\textbackslash(n+2\textbackslash)},
+es decir, debemos mostrar que
+
+\textbackslash{[}\textbackslash frac\{1\}\{1\textbackslash cdot 2\} +
+\textbackslash frac\{1\}\{2\textbackslash cdot 3\} +
+\textbackslash ldots + \textbackslash frac\{1\}\{n\textbackslash cdot
+(n+1)\} +
+\textbackslash frac\{1\}\{(n+1)(n+2)\}=\textbackslash frac\{n+1\}\{n+2\}.\textbackslash{]}
+
+Para ello, notemos que en el lado izquierdo aparece parte de la
+expresiÃ³n de la hipÃ³tesis inductiva. Tenemos entonces:
+
+\textbackslash{[}\textbackslash begin\{align*\}
+\textbackslash left(\textbackslash frac\{1\}\{1\textbackslash cdot 2\} +
+\textbackslash frac\{1\}\{2\textbackslash cdot 3\} +
+\textbackslash ldots + \textbackslash frac\{1\}\{n\textbackslash cdot
+(n+1)\}\textbackslash right) + \textbackslash frac\{1\}\{(n+1)(n+2)\}
+\&= \textbackslash frac\{n\}\{n+1\}+
+\textbackslash frac\{1\}\{(n+1)(n+2)\}\textbackslash\textbackslash{}
+\&=\textbackslash frac\{n(n+2)+(1)\}\{(n+1)(n+2)\}\textbackslash\textbackslash{}
+\&=\textbackslash frac\{n\^{}2+2n+1\}\{(n+1)(n+2)\}\textbackslash\textbackslash{}
+\&=\textbackslash frac\{(n+1)\^{}2\}\{(n+1)(n+2)\}\textbackslash\textbackslash{}
+\&=\textbackslash frac\{n+1\}\{n+2\}.
+\textbackslash end\{align*\}\textbackslash{]}
+
+En la primera igualdad usamos la hipÃ³tesis inductiva. Luego,
+simplemente hicimos las operaciones con fracciones. Notemos que llegamos
+justo al lado derecho que querÃ­amos llegar. Esto termina la prueba por
+inducciÃ³n. {{\textbackslash(\textbackslash square\textbackslash)}}
+
+\phantomsection\label{induccion-fuerte}
+\subsection{\texorpdfstring{InducciÃ³n
+fuerte\hyperref[induccion-fuerte]{\#}}{InducciÃ³n fuerte\#}}\label{inducciuxe3uxb3n-fuerte}
+
+Existen variantes del principio de inducciÃ³n que son igual de vÃ¡lidas.
+La siguiente se le conoce como el principio de inducciÃ³n fuerte, pues
+en la hipÃ³tesis inductiva suponemos no solamente un caso, sino tambiÃ©n
+todos los anteriores.
+
+\textbf{Principio de inducciÃ³n fuerte.} Para mostrar que una
+afirmaciÃ³n {\textbackslash(P(n)\textbackslash)} es cierta para todo
+entero positivo {\textbackslash(n\textbackslash)} basta con:
+
+\begin{itemize}
+\item
+  Mostrar que {\textbackslash(P(1)\textbackslash)} es cierta.
+\item
+  Mostrar que para {\textbackslash(n\textbackslash geq
+  2\textbackslash)}, \textbf{todas} las afirmaciones
+  {\textbackslash(P(k)\textbackslash)} para
+  {\textbackslash(k\textless n\textbackslash)} implican en conjunto
+  {\textbackslash(P(n)\textbackslash)}.
+\end{itemize}
+
+Veamos un problema interesante que hace uso de esta versiÃ³n del
+principio de inducciÃ³n.
+
+\textbf{Problema.} Muestra que cualquier nÃºmero entero positivo se
+puede expresar como suma de nÃºmeros de Fibonacci distintos.
+
+\emph{SoluciÃ³n.} Procedemos por inducciÃ³n fuerte. En el caso base
+tenemos a {\textbackslash(1\textbackslash)}, que ya es por sÃ­ mismo un
+nÃºmero de Fibonacci, asÃ­ que tiene una expresiÃ³n como la que buscamos.
+
+Tomemos ahora un entero {\textbackslash(n\textbackslash geq
+2\textbackslash)} y supongamos que todos los nÃºmeros desde
+{\textbackslash(1\textbackslash)} hasta
+{\textbackslash(n-1\textbackslash)} se pueden escribir como suma de
+Fibonacci distintos. Tomemos el entero {\textbackslash(k\textbackslash)}
+mÃ¡s grande posible tal que
+{\textbackslash(F\_k\textless n\textbackslash)}. Como
+{\textbackslash(k\textbackslash)} es el entero mÃ¡s grande para el cual
+esto pasa, tenemos que {\textbackslash(n\textbackslash leq
+F\_\{k+1\}=F\_\{k\}+F\_\{k-1\}\textbackslash)}, de donde
+
+\textbackslash{[}n-F\_k\textbackslash leq F\_\{k-1\}.\textbackslash{]}
+
+Como {\textbackslash(n\textbackslash)} es mayor que
+{\textbackslash(F\_k\textbackslash)}, se tiene que
+{\textbackslash(n-F\_k\textbackslash geq 1\textbackslash)}. AdemÃ¡s,
+{\textbackslash(n-F\_k\textbackslash lt n\textbackslash)}. Por
+hipÃ³tesis inductiva, el nÃºmero {\textbackslash(n-F\_k\textbackslash)}
+se debe poder expresar como suma de nÃºmeros de Fibonacci distintos,
+digamos
+
+\textbackslash{[}n-F\_k=F\_\{i\_1\}+F\_\{i\_2\}+\textbackslash ldots+F\_\{i\_r\}.\textbackslash{]}
+
+Como
+
+\textbackslash{[}n-F\_k\textbackslash leq F\_\{k-1\},\textbackslash{]}
+
+ninguno de los sumandos puede exceder a
+{\textbackslash(F\_\{k-1\}\textbackslash)}. AsÃ­, todos ellos son menores
+a {\textbackslash(F\_k\textbackslash)}. Por lo tanto, tenemos que
+
+\textbackslash{[}n=F\_\{i\_1\}+F\_\{i\_2\}+\textbackslash ldots+F\_\{i\_r\}+F\_k,\textbackslash{]}
+
+en donde en el lado derecho tenemos nÃºmeros de Fibonacci distintos,
+como querÃ­amos. {{\textbackslash(\textbackslash square\textbackslash)}}
+
+La idea de usar inducciÃ³n fuerte es muy buena: podemos demostrar cosas
+utilizando casos que ya hemos demostrado. Esta misma intuiciÃ³n la
+utilizaremos cuando diseÃ±emos algoritmos recursivos. Mientras tanto,
+estudia el siguiente cÃ³digo para ver cÃ³mo llevamos la idea de la
+demostraciÃ³n anterior a un algoritmo que escribe a cualquier entero
+positivo como suma de Fibonaccis distintos.
+
+\begin{verbatim}
+def sum_fibo(n):
+    fibo=[0,1]
+    while fibo[-1]<n:
+        fibo.append(fibo[-1]+fibo[-2])
+    sumandos=[]
+    suma=0
+    for j in fibo[::-1]:
+        if suma+j<=n:
+            sumandos.append(j)
+            suma+=j
+            if suma==n:
+                break
+
+    print("El nÃºmero {} es la suma de los Fibonaccis en la lista {}".format(n,sumandos))
+
+sum_fibo(553)
+sum_fibo(53)
+sum_fibo(111)
+\end{verbatim}
+
+\begin{verbatim}
+El nÃºmero 553 es la suma de los Fibonaccis en la lista [377, 144, 21, 8, 3]
+El nÃºmero 53 es la suma de los Fibonaccis en la lista [34, 13, 5, 1]
+El nÃºmero 111 es la suma de los Fibonaccis en la lista [89, 21, 1]
+\end{verbatim}
+
+\phantomsection\label{induccion-con-base-mas-grande}
+\subsection{\texorpdfstring{InducciÃ³n con base mÃ¡s
+grande\hyperref[induccion-con-base-mas-grande]{\#}}{InducciÃ³n con base mÃ¡s grande\#}}\label{inducciuxe3uxb3n-con-base-muxe3s-grande}
+
+Cuando en la demostraciÃ³n del paso inductivo usamos mÃ¡s de un elemento
+anterior, es importante que en los casos base revisemos tantos casos
+como la demostraciÃ³n de la hipÃ³tesis inductiva requiera. Para ver un
+ejemplo de esto, retomemos un ejemplo que dejamos pendiente acerca de
+cÃ³mo son los residuos al dividir entre
+{\textbackslash(3\textbackslash)} de los nÃºmeros de Fibonacci.
+
+\textbf{Problema.} Los residuos de la sucesiÃ³n de Fibonacci al dividir
+entre {\textbackslash(3\textbackslash)} se ciclan, con un ciclo de
+periodo {\textbackslash(8\textbackslash)} que es
+{\textbackslash(0,1,1,2,0,2,2,1\textbackslash)}.
+
+\emph{DemostraciÃ³n.} Hacemos el caso base de manera computacional,
+calculando los primeros {\textbackslash(8\textbackslash)} nÃºmeros de la
+sucesiÃ³n de Fibonacci y verificando que en efecto se cumple lo que
+decimos:
+
+\begin{verbatim}
+a,b=0,1
+for j in range(8):
+    print("Para {} el Fibonacci es {} y deja residuo {} al dividirse entre 3".format(j,a,a%3))
+    a,b=b,a+b
+\end{verbatim}
+
+\begin{verbatim}
+Para 0 el Fibonacci es 0 y deja residuo 0 al dividirse entre 3
+Para 1 el Fibonacci es 1 y deja residuo 1 al dividirse entre 3
+Para 2 el Fibonacci es 1 y deja residuo 1 al dividirse entre 3
+Para 3 el Fibonacci es 2 y deja residuo 2 al dividirse entre 3
+Para 4 el Fibonacci es 3 y deja residuo 0 al dividirse entre 3
+Para 5 el Fibonacci es 5 y deja residuo 2 al dividirse entre 3
+Para 6 el Fibonacci es 8 y deja residuo 2 al dividirse entre 3
+Para 7 el Fibonacci es 13 y deja residuo 1 al dividirse entre 3
+\end{verbatim}
+
+Ahora demostraremos el resultado Â«en bloques de
+{\textbackslash(8\textbackslash)}Â». AsÃ­, para cierta
+{\textbackslash(n\textbackslash geq 1\textbackslash)}, supongamos que el
+resultado es cierto para los primeros {\textbackslash(8n\textbackslash)}
+nÃºmeros de Fibonacci (hasta
+{\textbackslash(F\_\{8n-1\}\textbackslash)}). Lo que haremos en el paso
+inductivo es ver que para los siguientes
+{\textbackslash(8\textbackslash)} nÃºmeros de Fibonacci tambiÃ©n es
+cierto.
+
+Comencemos viendo que esto sucede para
+{\textbackslash(F\_\{8n\}\textbackslash)}, donde tenemos que ver que el
+residuo es {\textbackslash(0\textbackslash)}.Usamos que que:
+
+\textbackslash{[}F\_\{8n\}=F\_\{8n-1\}+F\_\{8n-2\}\textbackslash{]}
+
+Como por hipÃ³tesis inductiva tenemos que
+{\textbackslash(F\_\{8n-1\}\textbackslash)} deja residuo
+{\textbackslash(1\textbackslash)} al dividirse entre
+{\textbackslash(3\textbackslash)} y
+{\textbackslash(F\_\{8n-2\}\textbackslash)} deja residuo
+{\textbackslash(2\textbackslash)} al dividirse entre
+{\textbackslash(3\textbackslash)}, tenemos que
+{\textbackslash(F\_\{8n\}\textbackslash)} es mÃºltiplo de
+{\textbackslash(3\textbackslash)}, como querÃ­amos. En notaciÃ³n de
+congruencias, podemos escribir esto asÃ­:
+
+\textbackslash{[}F\_\{8n\}=F\_\{8n-1\}+F\_\{8n-2\}\textbackslash equiv 1
++ 2 \textbackslash equiv 0 \textbackslash pmod\{3\}.\textbackslash{]}
+
+De manera similar,
+
+\textbackslash{[}\textbackslash begin\{align*\}
+F\_\{8n+1\}\&=F\_\{8n\}+F\_\{8n-1\}\textbackslash equiv 0 + 1
+\textbackslash equiv 1
+\textbackslash pmod\{3\}\textbackslash\textbackslash{}
+F\_\{8n+2\}\&=F\_\{8n+1\}+F\_\{8n\}\textbackslash equiv 1 + 0
+\textbackslash equiv 1
+\textbackslash pmod\{3\}\textbackslash\textbackslash{}
+F\_\{8n+3\}\&=F\_\{8n+2\}+F\_\{8n+1\}\textbackslash equiv 1 + 1
+\textbackslash equiv 2
+\textbackslash pmod\{3\}\textbackslash\textbackslash{}
+F\_\{8n+4\}\&=F\_\{8n+3\}+F\_\{8n+2\}\textbackslash equiv 2 + 1
+\textbackslash equiv 0
+\textbackslash pmod\{3\}\textbackslash\textbackslash{}
+F\_\{8n+5\}\&=F\_\{8n+4\}+F\_\{8n+3\}\textbackslash equiv 0 + 2
+\textbackslash equiv 2
+\textbackslash pmod\{3\}\textbackslash\textbackslash{}
+F\_\{8n+6\}\&=F\_\{8n+5\}+F\_\{8n+4\}\textbackslash equiv 2 + 0
+\textbackslash equiv 2
+\textbackslash pmod\{3\}\textbackslash\textbackslash{}
+F\_\{8n+7\}\&=F\_\{8n+6\}+F\_\{8n+5\}\textbackslash equiv 2 + 2
+\textbackslash equiv 1
+\textbackslash pmod\{3\}\textbackslash\textbackslash{}
+\textbackslash end\{align*\}\textbackslash{]}
+
+Esto termina la prueba del paso inductivo y por lo tanto la
+demostraciÃ³n. {{\textbackslash(\textbackslash square\textbackslash)}}
+
+\subsection{\texorpdfstring{Tarea
+moral\hyperref[tarea-moral]{\#}}{Tarea moral\#}}\label{tarea-moral}
+
+Los siguientes problemas te ayudarÃ¡n a practicar lo visto en esta
+entrada. Para resolverlos, necesitarÃ¡s usar herramientas matemÃ¡ticas,
+computacionales o ambas.
+
+\begin{enumerate}
+\item
+  Si no somos cuidadosos con los argumentos inductivos, podemos tener
+  problemas y demostrar cosas falsas. Considera el siguiente
+  Â«argumentoÂ» inductivo que muestra que todos los gatos son del mismo
+  color. Procedemos por inducciÃ³n. Si tenemos un gato, sÃ³lo hay un
+  color que verificar. Supongamos que ya verificamos que siempre que
+  tenemos {\textbackslash(n\textbackslash)} gatos, entonces todos son
+  del mismo color. Toma un conjunto {\textbackslash(X\textbackslash)} de
+  {\textbackslash(n+1\textbackslash)} gatos y dos gatos
+  {\textbackslash(G\textbackslash)} y {\textbackslash(H\textbackslash)}
+  de {\textbackslash(X\textbackslash)}. Si a
+  {\textbackslash(X\textbackslash)} le quitamos el gato
+  {\textbackslash(G\textbackslash)}, por hipÃ³tesis inductiva todos son
+  del mismo color. Si a {\textbackslash(X\textbackslash)} le quitamos el
+  gato {\textbackslash(H\textbackslash)}, por hipÃ³tesis todos son del
+  mismo color. AsÃ­, {\textbackslash(G\textbackslash)} es del mismo color
+  que los gatos de {\textbackslash(X\textbackslash)}, que son del mismo
+  color que {\textbackslash(H\textbackslash)}, asÃ­ que ya todos los
+  {\textbackslash(n+1\textbackslash)} gatos fueron del mismo color. Esto
+  termina la Â«demostraciÃ³nÂ». Â¿CuÃ¡l es el problema?
+\item
+  Considera la matriz {\textbackslash(A=\textbackslash begin\{pmatrix\}
+  1 \& 2 \textbackslash\textbackslash{} 0 \&
+  1\textbackslash end\{pmatrix\}\textbackslash)}. Encuentra a mano las
+  matrices {\textbackslash(A\^{}2\textbackslash)},
+  {\textbackslash(A\^{}3\textbackslash)},
+  {\textbackslash(A\^{}4\textbackslash)},
+  {\textbackslash(A\^{}5\textbackslash)}. ObsÃ©rvalas con detenimiento.
+  Conjetura una expresiÃ³n cerrada para la matriz
+  {\textbackslash(A\^{}n\textbackslash)} y demuÃ©strala por inducciÃ³n.
+\item
+  Regresa al capÃ­tulo de Â«Buscar un patrÃ³nÂ», a la secciÃ³n de
+  Â«TriÃ¡ngulo de Pascal con saltos de tres en tresÂ». Demuestra por
+  inducciÃ³n todas las observaciones que se hicieron para obtener la
+  soluciÃ³n.
+\item
+  Muestra que cualquier nÃºmero entero positivo se puede expresar de
+  manera Ãºnica como suma de nÃºmeros de Fibonacci distintos, en donde
+  ademas no usamos dos nÃºmeros de Fibonacci
+  {\textbackslash(F\_n\textbackslash)} y
+  {\textbackslash(F\_m\textbackslash)} con
+  {\textbackslash(n\textbackslash)} y {\textbackslash(m\textbackslash)}
+  consecutivos.
+\item
+  Hay otra variante del principio de inducciÃ³n que se llama
+  Â«inducciÃ³n de CauchyÂ». Revisa la siguiente entrada de blog para
+  averiguar en quÃ© consiste:
+  \href{https://blog.nekomath.com/seminario-de-resolucion-de-problemas-principio-de-induccion-parte-3/}{Variantes
+  del principio de inducciÃ³n}.
+\end{enumerate}
+
+\href{DobleConteo.html}{\emph{}}
+
+anterior
+
+Principio de doble conteo y coeficientes binomiales
+
+\href{Recursion.html}{}
+
+siguiente
+
+Principio de recursiÃ³n
+
+\emph{}
+
+\emph{} Contenido
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[principio-de-induccion-basico]{Principio de inducciÃ³n
+  bÃ¡sico}
+\item
+  \hyperref[induccion-fuerte]{InducciÃ³n fuerte}
+\item
+  \hyperref[induccion-con-base-mas-grande]{InducciÃ³n con base mÃ¡s
+  grande}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+Por Leonardo Ignacio MartÃ­nez Sandoval
+
+Â© Copyright 2022.\\

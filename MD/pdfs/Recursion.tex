@@ -1,0 +1,757 @@
+\phantomsection\label{main-content}
+{}
+
+\emph{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{../_sources/P1/Recursion.ipynb}{{ \emph{} } {.ipynb}}
+\item
+  { \emph{} } {.pdf}
+\end{itemize}
+
+{ \emph{} }
+
+{}
+
+\phantomsection\label{jb-print-docs-body}
+\section{Principio de recursiÃ³n}\label{principio-de-recursiuxe3uxb3n}
+
+\phantomsection\label{print-main-content}
+\phantomsection\label{jb-print-toc}
+\subsection{Contenido}\label{contenido}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[sucesiones-recursivas]{Sucesiones recursivas}
+\item
+  \hyperref[recursion-para-resolver-problemas]{RecursiÃ³n para resolver
+  problemas}
+\item
+  \hyperref[sucesiones-recursivas-lineales]{Sucesiones recursivas
+  lineales}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+\phantomsection\label{searchbox}
+
+\phantomsection\label{principio-de-recursion}
+\section{\texorpdfstring{Principio de
+recursiÃ³n\hyperref[principio-de-recursion]{\#}}{Principio de recursiÃ³n\#}}\label{principio-de-recursiuxe3uxb3n-1}
+
+\phantomsection\label{introduccion}
+\subsection{\texorpdfstring{IntroducciÃ³n\hyperref[introduccion]{\#}}{IntroducciÃ³n\#}}\label{introducciuxe3uxb3n}
+
+En esta entrada supondremos que conoces las nociones bÃ¡sicas de
+sucesiones. TambiÃ©n supondremos que conoces a grandes rasgos el teorema
+de recursiÃ³n en los nÃºmeros naturales. De no ser asÃ­, puedes revisar
+el siguiente material:
+
+\begin{itemize}
+\item
+  Material de sucesiones en \url{https://blog.nekomath.com/srp/}
+\item
+  Material de la Unidad 1 en \url{https://blog.nekomath.com/as2/}
+\end{itemize}
+
+El teorema de recursiÃ³n en los nÃºmeros naturales nos dice, a grandes
+rasgos, que podemos crear funciones en los nÃºmeros naturales Â«haciendo
+referencia a tÃ©rminos anterioresÂ». Esta nociÃ³n la podemos llevar al
+contexto de sucesiones, a la de resoluciÃ³n de problemas de conteo y a
+la de creaciÃ³n de algoritmos. En esta entrada discutiremos algunas de
+estas aplicaciones.
+
+\subsection{\texorpdfstring{Sucesiones
+recursivas\hyperref[sucesiones-recursivas]{\#}}{Sucesiones recursivas\#}}\label{sucesiones-recursivas}
+
+Una sucesiÃ³n en un conjunto {\textbackslash(X\textbackslash)} consiste
+simplemente en definir, para cada entero
+{\textbackslash(n\textbackslash geq 0\textbackslash)} un elemento
+{\textbackslash(x\_n\textbackslash)} en
+{\textbackslash(X\textbackslash)}. Una manera de hacer esto es
+\textbf{recursivamente}, es decir, explicando cÃ³mo es el valor de un
+tÃ©rmino {\textbackslash(x\_n\textbackslash)} en funciÃ³n de los
+tÃ©rminos anteriores
+{\textbackslash(x\_0,x\_1,\textbackslash ldots,x\_\{n-1\}\textbackslash)}.
+Si tenemos una \textbf{sucesiÃ³n recursiva} asÃ­ de general, basta con
+definir el tÃ©rmino {\textbackslash(x\_0\textbackslash)} y la regla
+recursiva para construir toda la sucesiÃ³n.
+
+\emph{Ejemplo.} Consideremos la sucesiÃ³n recursiva dada por
+
+\textbackslash{[}\textbackslash begin\{align*\}
+y\_0\&=1\textbackslash\textbackslash{}
+y\_n\&=y\_0+y\_1+y\_2+\textbackslash ldots+y\_\{n-1\}+1.
+\textbackslash end\{align*\}\textbackslash{]}
+
+Su primer tÃ©rmino es {\textbackslash(y\_0=1\textbackslash)}. Si
+queremos encontrar {\textbackslash(y\_1\textbackslash)}, podemos usar la
+regla recursiva en {\textbackslash(n=1\textbackslash)} para obtener
+
+\textbackslash{[}y\_1=y\_0+1=1+1=2.\textbackslash{]}
+
+Para encontrar su segundo tÃ©rmino, usamos de nuevo la regla recursiva,
+ahora para {\textbackslash(n=2\textbackslash)} para obtener
+
+\textbackslash{[}y\_2=y\_0+y\_1+1=1+2+1=4.\textbackslash{]}
+
+Calculando un par de valores mÃ¡s tenemos
+
+\textbackslash{[}\textbackslash begin\{align*\}
+y\_3\&=y\_0+y\_1+y\_2+1=1+2+4+1=8\textbackslash\textbackslash{}
+y\_4\&=y\_0+y\_1+y\_2+y\_3+1=1+2+4+8+1=16.
+\textbackslash end\{align*\}\textbackslash{]}
+
+Si bien tenemos una fÃ³rmula recursiva, en este caso parece aparecer un
+patrÃ³n que nos da una fÃ³rmula cerrada: las potencias de dos. Para
+demostrar que {\textbackslash(y\_n=2\^{}n\textbackslash)} se puede
+utilizar inducciÃ³n fuerte.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+En algunas ocasiones queremos que nuestra sucesiÃ³n dependa de los
+{\textbackslash(k\textbackslash)} Ãºltimos valores que definimos, es
+decir, que {\textbackslash(x\_\{n+k+1\}\textbackslash)} estÃ© en
+tÃ©rminos de
+{\textbackslash(x\_\{n+1\},\textbackslash ldots,x\_\{n+k\}\textbackslash)}.
+Cuando este es el caso, usualmente debemos definir los primeros
+{\textbackslash(k\textbackslash)} valores de la sucesiÃ³n para de ahÃ­
+definir los demÃ¡s. En este caso decimos que la sucesiÃ³n es
+\textbf{recursiva de orden} {\textbackslash(k\textbackslash)}. Un
+ejemplo que ya hemos visto es la sucesiÃ³n de Fibonacci: los primeros
+dos tÃ©rminos son {\textbackslash(0\textbackslash)} y
+{\textbackslash(1\textbackslash)}. Luego, cada tÃ©rmino depende de los
+dos anteriores. AsÃ­, la sucesiÃ³n de Fibonacci es una sucesiÃ³n
+recursiva de orden {\textbackslash(2\textbackslash)}. Veamos otro
+ejemplo.
+
+\textbf{Problema.} Considera las sucesiones
+{\textbackslash(a\_n\textbackslash)} y
+{\textbackslash(b\_n\textbackslash)} dadas por las siguientes reglas.
+
+\textbackslash{[}\textbackslash begin\{align*\} a\_0\&=0, a\_1=0,
+a\_2=1\textbackslash\textbackslash{}
+a\_\{n+3\}\&=a\_\{n\}a\_\{n+1\}a\_\{n+2\}-a\_\{n\}-a\_\{n+1\}-a\_\{n+2\}.
+\textbackslash end\{align*\}\textbackslash{]}
+
+y
+
+\textbackslash{[}\textbackslash begin\{align*\} b\_0\&=0, b\_1=1,
+b\_2=1\textbackslash\textbackslash{}
+b\_\{n+3\}\&=b\_\{n\}b\_\{n+1\}b\_\{n+2\}-b\_\{n\}-b\_\{n+1\}-b\_\{n+2\}.
+\textbackslash end\{align*\}\textbackslash{]}
+
+Demuestra que una de ellas nunca excede el valor
+{\textbackslash(2\textbackslash)}, mientras que la otra toma valores tan
+grandes como queramos.
+
+\emph{SoluciÃ³n.} Ambas son sucesiones recursivas de orden
+{\textbackslash(3\textbackslash)}. Tienen exactamente la misma regla de
+recurrencia. Sin embargo, sus valores iniciales difieren:
+{\textbackslash(a\_1=0\textbackslash)}, mientras que
+{\textbackslash(b\_1=1\textbackslash)}. ExplorÃ©mos ahora estas
+sucesiones de manera computacional. Esto lo hacemos en las siguientes
+celdas de cÃ³digo, en donde mostramos los primeros
+{\textbackslash(12\textbackslash)} valores de cada sucesiÃ³n.
+
+\begin{verbatim}
+x,y,z=0,0,1
+an=[]
+for j in range(12):
+    an.append(x)
+    x,y,z=y,z,x*y*z-x-y-z
+
+print(an)
+\end{verbatim}
+
+\begin{verbatim}
+[0, 0, 1, -1, 0, 0, 1, -1, 0, 0, 1, -1]
+\end{verbatim}
+
+\begin{verbatim}
+x,y,z=0,1,1
+bn=[]
+for j in range(12):
+    bn.append(x)
+    x,y,z=y,z,x*y*z-x-y-z
+
+print(bn)
+\end{verbatim}
+
+\begin{verbatim}
+[0, 1, 1, -2, -2, 7, 25, -380, -66152, 628510507, 15799345654000345, -656892981641024153197473821780]
+\end{verbatim}
+
+De acuerdo a la exploraciÃ³n computacional, parece ser que
+{\textbackslash(a\_n\textbackslash)} es la que nunca excede
+{\textbackslash(2\textbackslash)}. De hecho, podemos conjeturar algo
+mÃ¡s fuerte: que {\textbackslash(a\_n\textbackslash)} es cÃ­clica con un
+ciclo de periodo {\textbackslash(4\textbackslash)} que es
+{\textbackslash(0,0,1,-1\textbackslash)}. Esto puede demostrarse por
+inducciÃ³n.
+
+TambiÃ©n, parece ser que {\textbackslash(b\_n\textbackslash)} es la que
+sus valores pueden ser tan grandes como queramos. Esto tambiÃ©n puede
+demostrarse por inducciÃ³n, aunque la prueba no es tan directa.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+El problema anterior nos muestra que sucesiones recursivas con la misma
+regla de recursiÃ³n y puntos de partida muy parecidos pueden tener
+comportamientos muy diferentes. AdemÃ¡s, la segunda sucesiÃ³n debe
+sugerirnos que una regla recursiva no siempre tiene una fÃ³rmula cerrada
+sencilla de expresar.
+
+\phantomsection\label{recursion-para-resolver-problemas}
+\subsection{\texorpdfstring{RecursiÃ³n para resolver
+problemas\hyperref[recursion-para-resolver-problemas]{\#}}{RecursiÃ³n para resolver problemas\#}}\label{recursiuxe3uxb3n-para-resolver-problemas}
+
+Cuando definimos recursivamente nos basamos en Â«casos mÃ¡s pequeÃ±os
+que ya hayamos hechoÂ». Esto funciona muy bien no sÃ³lo para definir
+cosas, sino tambiÃ©n para resolver problemas. AdemÃ¡s, tiene la ventaja
+de combinarse bien con la tÃ©cnica de buscar un patrÃ³n, pues para ambas
+resulta de mucha utilidad resolver casos pequeÃ±os.
+
+Hay algunos problemas de conteo que se prestan para realizar soluciones
+recursivas. Veamos un ejemplo:
+
+\textbf{Problema.} Â¿CuÃ¡ntas palabras de
+{\textbackslash(100\textbackslash)} letras
+{\textbackslash(A\textbackslash)}, {\textbackslash(B\textbackslash)} o
+{\textbackslash(C\textbackslash)} hay, en las cuales nunca aparece
+{\textbackslash(AB\textbackslash)} en la palabra?
+
+\emph{SoluciÃ³n.} Para una letra hay tres posibles palabras:
+{\textbackslash(A\textbackslash)}, {\textbackslash(B\textbackslash)} y
+{\textbackslash(C\textbackslash)}. Para dos letras hay 8 posibles
+palabras: {\textbackslash(AA\textbackslash)},
+{\textbackslash(AC\textbackslash)}, {\textbackslash(BA\textbackslash)},
+{\textbackslash(BB\textbackslash)}, {\textbackslash(BC\textbackslash)},
+{\textbackslash(CA\textbackslash)}, {\textbackslash(CB\textbackslash)} y
+{\textbackslash(CC\textbackslash)}. En cuanto tenemos tres letras los
+casos se empiezan a complicar. Para resolver el problema hay que
+introducir dos ideas clave: partir nuestra cuentra en tres partes y
+establecer una recursiÃ³n.
+
+AsÃ­, sean {\textbackslash(a\_n\textbackslash)},
+{\textbackslash(b\_n\textbackslash)} y
+{\textbackslash(c\_n\textbackslash)} las palabras con
+{\textbackslash(n\textbackslash)} letras que nos interesan y que,
+respectivamente, terminan en {\textbackslash(A\textbackslash)},
+{\textbackslash(B\textbackslash)} o {\textbackslash(C\textbackslash)}.
+Por los primeros casos que hicimos tenemos:
+
+\textbackslash{[}\textbackslash begin\{align*\} a\_1=1, b\_1=1,
+c\_1=1\textbackslash\textbackslash{} a\_2=3, b\_2=2, c\_2=3.
+\textbackslash end\{align*\}\textbackslash{]}
+
+La ventaja de partir el problema y estudiarlo mÃ¡s en general es que
+ahora podemos traducir la hipÃ³tesis de que nunca aparece
+{\textbackslash(AB\textbackslash)} en una condiciÃ³n algebraica
+recursiva. Tenemos que:
+
+\textbackslash{[}\textbackslash begin\{align*\}
+a\_\{n+1\}\&=a\_n+b\_n+c\_n\textbackslash\textbackslash{}
+b\_\{n+1\}\&=b\_n+c\_n\textbackslash\textbackslash{}
+c\_\{n+1\}\&=a\_n+b\_n+c\_n.
+\textbackslash end\{align*\}\textbackslash{]}
+
+La primera igualdad se debe a que una palabra de
+{\textbackslash(n+1\textbackslash)} letras que nos interesa y que
+termine en {\textbackslash(A\textbackslash)} puede ser formada a partir
+de agregar {\textbackslash(A\textbackslash)} al final a una de
+{\textbackslash(n\textbackslash)} letras que termine en
+{\textbackslash(a\textbackslash)}, o una de
+{\textbackslash(n\textbackslash)} letras que termine en
+{\textbackslash(B\textbackslash)}, o una de
+{\textbackslash(n\textbackslash)} letras que termine en
+{\textbackslash(C\textbackslash)}. La explicaciÃ³n es anÃ¡loga para la
+tercera igualdad. Sin embargo, si una palabra de
+{\textbackslash(n+1\textbackslash)} letras de las que nos interesan
+termina en {\textbackslash(B\textbackslash)}, no pudo haber sido al
+agregarle una {\textbackslash(B\textbackslash)} al final a una que
+terminara en {\textbackslash(A\textbackslash)}, pues en ese caso se
+crearÃ­a el patrÃ³n {\textbackslash(AB\textbackslash)} prohibido.
+
+Ya argumentada la validez de la recursiÃ³n, podemos encontrar
+computacionalmente los valores
+{\textbackslash(a\_\{100\},b\_\{100\},c\_\{100\}\textbackslash)} que nos
+interesan para sumarlos y dar el resultado pedido. Hacemos esto a
+continuaciÃ³n.
+
+\begin{verbatim}
+a,b,c=1,1,1
+for j in range(99):
+    a,b,c=a+b+c,b+c,a+b+c
+print(a+b+c)
+\end{verbatim}
+
+\begin{verbatim}
+734544867157818093234908902110449296423351
+\end{verbatim}
+
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+Veamos ahora un problema que viene de datos reales.
+
+\textbf{Problema.} En el siguiente cÃ³digo se carga la informaciÃ³n de
+la inflaciÃ³n por aÃ±o en MÃ©xico desde 1970 a 2020.
+
+\begin{verbatim}
+import pandas as pd
+
+df_inflacion=pd.read_csv('Inflacion.csv',index_col="Year")
+display(df_inflacion.head(3))
+print("...")
+display(df_inflacion.tail(2))
+\end{verbatim}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+& Inflation \\
+Year & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1970 & 4.69 \\
+1971 & 4.96 \\
+1972 & 5.56 \\
+\end{longtable}
+
+\begin{verbatim}
+...
+\end{verbatim}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+& Inflation \\
+Year & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+2019 & 2.83 \\
+2020 & 3.15 \\
+\end{longtable}
+
+Se quiere saber cuÃ¡l es la mÃ¡xima cantidad de aÃ±os que se pueden
+tomar, de menor a mayor, pero no necesariamente seguidos, para los
+cuales la inflaciÃ³n disminuyÃ³. Por ejemplo, se puede verificar que
+{\textbackslash(1980, 1989, 1999, 2004, 2009\textbackslash)} nos da
+cinco aÃ±os en los cuales la inflaciÃ³n disminuyÃ³, pues tuvo los
+siguientes valores:
+
+\begin{verbatim}
+df_inflacion.loc[[1980,1989,1999,2004,2009]]
+\end{verbatim}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+& Inflation \\
+Year & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1980 & 29.84 \\
+1989 & 19.69 \\
+1999 & 12.32 \\
+2004 & 5.19 \\
+2009 & 3.57 \\
+\end{longtable}
+
+Â¿SerÃ¡ esta la lista mÃ¡s larga de aÃ±os que podemos conseguir? La idea
+para resolver el problema es pensar de manera recursiva. La lista mÃ¡s
+larga que termina en {\textbackslash(1970\textbackslash)} consiste de
+Ãºnicamente ese aÃ±o. Â¿CuÃ¡l es la lista mÃ¡s larga que termina en el
+aÃ±o {\textbackslash(n\textbackslash)}?
+
+\begin{itemize}
+\item
+  Si todas las inflaciones anteriores son mÃ¡s chicas, entonces la lista
+  consistirÃ¡ sÃ³lo del aÃ±o {\textbackslash(n\textbackslash)}.
+\item
+  Si en algÃºn aÃ±o {\textbackslash(k\textbackslash)} anterior la
+  inflaciÃ³n es mayor, entonces entonces el aÃ±o
+  {\textbackslash(n\textbackslash)} puede alargar la lista mÃ¡s larga
+  que termina en {\textbackslash(k\textbackslash)}.
+\end{itemize}
+
+AsÃ­, la lista mÃ¡s larga que termina en el aÃ±o
+{\textbackslash(n\textbackslash)} serÃ¡ de
+{\textbackslash(1\textbackslash)} aÃ±o, o de lo mÃ¡ximo que podamos
+extender una que termine en una inflaciÃ³n menor.
+
+Estas ideas nos llevan a la siguiente soluciÃ³n en cÃ³digo. De momento
+no discutiremos los detalles y los veremos con un poco mÃ¡s de
+profundidad en la parte 4 del libro cuando hablemos de heurÃ­sticas para
+la creaciÃ³n de algoritmos.
+
+\begin{verbatim}
+lista=df_inflacion['Inflation'].to_list()
+max_decreciente=[]
+padres=[]
+
+for j in range(51):
+    mejor=0
+    padre=None
+    for k in range(j-1):
+        if lista[k]>lista[j] and max_decreciente[k]>mejor:
+            padre=k
+            mejor=max_decreciente[k]
+    padres.append(padre)
+    max_decreciente.append(mejor+1)
+
+mejor_lista=[]
+padre=49
+while padre!=None:
+    mejor_lista=[padre]+mejor_lista
+    padre=padres[mejor_lista[0]]
+mejor_lista=[x+1970 for x in mejor_lista]
+print(mejor_lista)
+
+df_inflacion.loc[mejor_lista]
+\end{verbatim}
+
+\begin{verbatim}
+[1973, 1977, 1979, 1989, 1991, 1997, 1999, 2002, 2004, 2006, 2009, 2016, 2019]
+\end{verbatim}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+& Inflation \\
+Year & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1973 & 21.37 \\
+1977 & 20.66 \\
+1979 & 20.02 \\
+1989 & 19.69 \\
+1991 & 18.79 \\
+1997 & 15.72 \\
+1999 & 12.32 \\
+2002 & 5.70 \\
+2004 & 5.19 \\
+2006 & 4.05 \\
+2009 & 3.57 \\
+2016 & 3.36 \\
+2019 & 2.83 \\
+\end{longtable}
+
+De este modo, la mejor lista de aÃ±os en los cuales la inflaciÃ³n ha
+disminuido tiene longitud {\textbackslash(13\textbackslash)}.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\subsection{\texorpdfstring{Sucesiones recursivas
+lineales\hyperref[sucesiones-recursivas-lineales]{\#}}{Sucesiones recursivas lineales\#}}\label{sucesiones-recursivas-lineales}
+
+Las sucesiones recursivas pueden ser tan extraÃ±as como uno quisiera.
+Por ejemplo, podrÃ­amos pedir que {\textbackslash(a\_0=1, a\_1=2,
+a\_2=3\textbackslash)} y que
+{\textbackslash(a\_n=a\_\{n-1\}+a\_\{n-2\}\^{}2-\textbackslash log
+a\_\{n-3\}\textbackslash)}. En general es difÃ­cil entender totalmente
+una sucesiÃ³n recursiva arbitraria y este tipo de preguntas nos llevan a
+Ã¡reas muy interesantes de las matemÃ¡ticas como la dinÃ¡mica y los
+sistemas caÃ³ticos. Por esta razÃ³n, es de mucha utilidad clasificar a
+las recursiones en distintos tipos e identificar aquellos que podamos
+estudiar de manera sencilla.
+
+\textbf{DefiniciÃ³n.} Para un entero {\textbackslash(k\textbackslash)}
+decimos que una sucesiÃ³n es \textbf{recursiva lineal de orden}
+{\textbackslash(k\textbackslash)} si:
+
+\begin{itemize}
+\item
+  Se dan sus primeros {\textbackslash(k\textbackslash)} tÃ©rminos
+  {\textbackslash(a\_0,\textbackslash ldots,a\_\{k-1\}\textbackslash)} y
+\item
+  Satisface una \textbf{recursiÃ³n lineal}, es decir existen
+  {\textbackslash(k\textbackslash)} constantes
+  {\textbackslash(c\_0,\textbackslash ldots,c\_\{k-1\}\textbackslash)}
+  tales que para todo {\textbackslash(n\textbackslash geq
+  0\textbackslash)} se cumple que
+
+  \textbackslash{[}a\_\{n+k\}=c\_0a\_\{n\}+c\_1a\_\{n+1\}+\textbackslash ldots+c\_\{k-1\}a\_\{n+k-1\}.\textbackslash{]}
+\end{itemize}
+
+En tÃ©rminos de Ã¡lgebra lineal, debe existir una
+{\textbackslash(k\textbackslash)} fija y
+{\textbackslash(k\textbackslash)} coeficientes fijos tales que cada
+tÃ©rmino es combinaciÃ³n lineal de los {\textbackslash(k\textbackslash)}
+anteriores con esos coeficientes.
+
+\emph{Ejemplo.} Las suceciones recursivas lineales de orden
+{\textbackslash(1\textbackslash)} son simplemente las sucesiones
+geomÃ©tricas pues se nos da el primer tÃ©rmino
+{\textbackslash(a\_0\textbackslash)} y luego la recursiÃ³n que se cumple
+es {\textbackslash(a\_\{n+1\}=c\_0a\_n\textbackslash)}. Una sencilla
+prueba inductiva muestra que
+
+\textbackslash{[}a\_n=a\_0\textbackslash cdot
+c\_0\^{}n.\textbackslash{]}
+
+AsÃ­, a partir de una fÃ³rmula recursiva es muy sencillo dar una fÃ³rmula
+cerrada para ellas.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\emph{Ejemplo.} Ya nos hemos encontrado con una sucesiÃ³n recursiva
+lineal de orden {\textbackslash(2\textbackslash)}: la sucesiÃ³n de
+Fibonacci. Se dan los primeros dos tÃ©rminos como
+{\textbackslash(0\textbackslash)} y {\textbackslash(1\textbackslash)}.
+Luego, cada tÃ©rmino es la suma de los dos anteriores, es decir es la
+combinaciÃ³n lineal de ellos con coeficiente
+{\textbackslash(1\textbackslash)}.
+
+Otra sucesiÃ³n recursiva lineal de orden
+{\textbackslash(2\textbackslash)} es la sucesiÃ³n de Lucas. Los primeros
+dos tÃ©rminos son {\textbackslash(2\textbackslash)} y
+{\textbackslash(1\textbackslash)}. Luego, cada tÃ©rmino es la suma de
+los dos anteriores. Los primeros nÃºmeros de la sucesiÃ³n de Lucas son:
+
+\textbackslash{[}2,1,3,4,7,11,18,29,47,76,\textbackslash ldots.\textbackslash{]}
+
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+Las sucesiones recursivas lineales se conocen muy bien. Un primer
+resultado del cual no es difÃ­cil convencerse mediante un argumento
+inductivo es el siguiente.
+
+\textbf{Lema.} Si dos sucesiones recursivas lineales de orden
+{\textbackslash(k\textbackslash)} coinciden en sus primeros
+{\textbackslash(k\textbackslash)} elementos y ademÃ¡s tienen la misma
+regla recursiva, entonces coinciden en todos sus elementos.
+
+A veces esto es suficiente para resolver un problema.
+
+\textbf{Problema.} Demuesta la siguiente fÃ³rmula para los nÃºmeros de
+Fibonacci:
+
+\textbackslash{[}F\_n=\textbackslash frac\{\textbackslash left(\textbackslash frac\{1+\textbackslash sqrt\{5\}\}\{2\}\textbackslash right)\^{}n-\textbackslash left(\textbackslash frac\{1-\textbackslash sqrt\{5\}\}\{2\}\textbackslash right)\^{}n\}\{\textbackslash sqrt\{5\}\}.\textbackslash{]}
+
+\emph{SoluciÃ³n.} Llamemos {\textbackslash(f\_n\textbackslash)} al lado
+derecho de la fÃ³rmula por demostrar. Una verificaciÃ³n rÃ¡pida muestra
+{\textbackslash(f\_0=0=F\_0\textbackslash)} y que
+{\textbackslash(f\_1=1=F\_1\textbackslash)}. Por el lema anterior,
+bastarÃ­a ver que {\textbackslash(f\_n\textbackslash)} es recursiva
+lineal de orden {\textbackslash(2\textbackslash)}, con la misma regla de
+recursiÃ³n que la sucesiÃ³n de Fibonacci.
+
+Escribamos
+{\textbackslash(\textbackslash varphi=\textbackslash frac\{1+\textbackslash sqrt\{5\}\}\{2\}\textbackslash)}
+y
+{\textbackslash(\textbackslash varphi\textquotesingle=\textbackslash frac\{1-\textbackslash sqrt\{5\}\}\{2\}\textbackslash)}.
+Haciendo las operaciones, se puede verificar que
+{\textbackslash((x-\textbackslash varphi)(x-\textbackslash varphi\textquotesingle)=x\^{}2-x-1\textbackslash)},
+de modo que {\textbackslash(\textbackslash varphi\textbackslash)} y
+{\textbackslash(\textbackslash varphi\textquotesingle\textbackslash)}
+son las raÃ­ces del polinomio de la derecha. Esto nos dice que
+{\textbackslash(\textbackslash varphi\^{}2=\textbackslash varphi+1\textbackslash)}
+y que
+{\textbackslash(\textbackslash varphi\textquotesingle\^{}2=\textbackslash varphi\textquotesingle+1\textbackslash)}.
+Al multiplicar por
+{\textbackslash(\textbackslash varphi\^{}n\textbackslash)} y
+{\textbackslash(\textbackslash varphi\textquotesingle\^{}n\textbackslash)},
+respectivamente, obtenemos las igualdades:
+
+\textbackslash{[}\textbackslash begin\{align*\}
+\textbackslash varphi\^{}\{n+2\}\&=\textbackslash varphi\^{}\{n+1\}+\textbackslash varphi\^{}n,\textbackslash\textbackslash{}
+\textbackslash varphi\textquotesingle\^{}\{n+2\}\&=\textbackslash varphi\textquotesingle\^{}\{n+1\}+\textbackslash varphi\textquotesingle\^{}n.\textbackslash\textbackslash{}
+\textbackslash end\{align*\}\textbackslash{]}
+
+Restando la segunda a la primera y dividiendo entre
+{\textbackslash(\textbackslash sqrt\{5\}\textbackslash)} obtenemos que
+{\textbackslash(f\_\{n+2\}=f\_\{n+1\}+f\_n\textbackslash)}. AsÃ­, la
+sucesiÃ³n {\textbackslash(F\_n\textbackslash)} y la
+{\textbackslash(f\_n\textbackslash)} tienen los mismos dos tÃ©rminos y
+la misma recursiÃ³n lineal de orden {\textbackslash(2\textbackslash)}.
+De este modo, por el lema deben coincidir.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+El problema anterior es lindo, pero no explica de dÃ³nde sale la
+fÃ³rmula. La clave estÃ¡ en el polinomio
+{\textbackslash(x\^{}2-x-1\textbackslash)} que se menciona durante el
+problema. Si tenemos {\textbackslash(a\_n\textbackslash)} una sucesiÃ³n
+recursiva lineal de orden {\textbackslash(2\textbackslash)} con
+recursiÃ³n
+{\textbackslash(a\_\{n+2\}=c\_0a\_n+c\_1a\_\{n+1\}\textbackslash)},
+entonces podemos asociarle el \textbf{polinomio caracterÃ­stico}
+{\textbackslash(x\^{}2-c\_1x-c\_0\textbackslash)}. Este polinomio estÃ¡
+muy conectado con la sucesiÃ³n. Por ejemplo, puede mostrarse que si
+tiene dos raÃ­ces distintas {\textbackslash(r\_1\textbackslash)} y
+{\textbackslash(r\_2\textbackslash)}, entonces existen constantes
+{\textbackslash(s\_1\textbackslash)} y
+{\textbackslash(s\_2\textbackslash)} tales que
+{\textbackslash(a\_n=s\_1r\_1\^{}n+s\_2r\_2\^{}n\textbackslash)}. Estas
+constantes pueden encontrarse con un sistema de ecuaciones usando los
+primeros valores de la sucesiÃ³n. Veamos cÃ³mo podemos poner esto en
+acciÃ³n.
+
+\textbf{Problema.} Encuentra una fÃ³rmula cerrada para la sucesiÃ³n
+{\textbackslash(x\_n\textbackslash)} tal que
+{\textbackslash(x\_0=3\textbackslash)},
+{\textbackslash(x\_1=5\textbackslash)} y para
+{\textbackslash(n\textbackslash geq 0\textbackslash)} cumple que
+
+\textbackslash{[}x\_\{n+2\}=2x\_\{n+1\}+3x\_n.\textbackslash{]}
+
+\emph{SoluciÃ³n.} Por lo discutido arriba, debemos estudiar el polinomio
+{\textbackslash(x\^{}2-2x-3\textbackslash)}. Sus raÃ­ces son
+{\textbackslash(3\textbackslash)} y {\textbackslash(-1\textbackslash)},
+que son distintas. AsÃ­, deben existir constantes
+{\textbackslash(a\textbackslash)} y {\textbackslash(b\textbackslash)}
+tales que {\textbackslash(x\_n=a\textbackslash cdot 3\^{}n +
+b\textbackslash cdot (-1)\^{}n\textbackslash)}. Los casos
+{\textbackslash(n=0\textbackslash)} y
+{\textbackslash(n=1\textbackslash)} nos llevan al sistema de ecuaciones:
+
+\textbackslash{[}\textbackslash begin\{split\}\textbackslash begin\{cases\}a+b\&=3\textbackslash\textbackslash3a-b\&=5.
+\textbackslash end\{cases\}\textbackslash end\{split\}\textbackslash{]}
+
+La soluciÃ³n es {\textbackslash(a=2\textbackslash)},
+{\textbackslash(b=1\textbackslash)}. De este modo, concluimos que una
+fÃ³rmula cerrada para la sucesiÃ³n es
+
+\textbackslash{[}x\_n=2\textbackslash cdot 3\^{}n +
+(-1)\^{}n.\textbackslash{]}
+
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+Hay que reflexionar un poco para convencerse de que el mÃ©todo anterior
+es vÃ¡lido matemÃ¡ticamente. Sin embargo, por el momento podemos
+calcular computacionalmente los primeros valores de la sucesiÃ³n y de la
+fÃ³rmula para ir convenciÃ©ndonos de su validez.
+
+\begin{verbatim}
+a,b=3,5
+valores=[]
+for j in range(10):
+    valores.append(a)
+    a,b=b,2*b+3*a
+print("Los primeros 10 valores usando la recursiÃ³n son {}".format(valores))
+
+valores=[]
+for j in range(10):
+    valores.append(2*3**j+(-1)**j)
+print("Los primeros 10 valores usando la fÃ³rmula son {}".format(valores))
+\end{verbatim}
+
+\begin{verbatim}
+Los primeros 10 valores usando la recursiÃ³n son [3, 5, 19, 53, 163, 485, 1459, 4373, 13123, 39365]
+Los primeros 10 valores usando la fÃ³rmula son [3, 5, 19, 53, 163, 485, 1459, 4373, 13123, 39365]
+\end{verbatim}
+
+\subsection{\texorpdfstring{Tarea
+moral\hyperref[tarea-moral]{\#}}{Tarea moral\#}}\label{tarea-moral}
+
+Los siguientes problemas te ayudarÃ¡n a practicar lo visto en esta
+entrada. Para resolverlos, necesitarÃ¡s usar herramientas matemÃ¡ticas,
+computacionales o ambas.
+
+\begin{enumerate}
+\item
+  Se tienen 5 piratas, que van a repartir un tesoro de 1000 monedas
+  entre ellos. EstÃ¡n ordenados por rangos. RepartirÃ¡n el tesoro
+  haciendo varias rondas de propuesta-votaciÃ³n. Cada una de ellas
+  consiste de lo siguiente:
+
+  \begin{itemize}
+  \item
+    De entre los piratas que queden, el de mayor rango hace una
+    propuesta de cÃ³mo repartir las monedas.
+  \item
+    Se vota la propuesta entre los piratas.
+  \item
+    Si los votos por aprobarla son estrictamente mayor a la mitad de los
+    piratas restantes, entonces asÃ­ se hace la reparticiÃ³n.
+  \item
+    Si la propuesta no se aprueba con mÃ¡s de la mitad de los votos,
+    entonces tiran al pirata que la propuso por la borda.
+  \end{itemize}
+
+  La prioridad nÃºmero uno de un pirata es sobrevivir. La prioridad
+  nÃºmero dos es conseguir la mayor cantidad posible de monedas.
+  Finalmente, si debe decidir entre dos opciones en sobrevive con la
+  misma cantidad de monedas, entonces elegirÃ¡ en la que mÃ¡s piratas se
+  avienten por la borda. Los piratas conocen estas reglas y por el honor
+  pirata las seguirÃ¡n al pie de la letra.
+
+  Â¿QuÃ© es lo mejor que le puede pasar a cada pirata? Â¿CÃ³mo debe
+  votar? En caso de que le toque proponer, Â¿cÃ³mo debe proponer? Como
+  sugerencia, estudia primero quÃ© pasa con pocos piratas.
+\item
+  Hay algunos problemas que quedaron pendientes en el texto. EstÃ¡n
+  recopilados a continuaciÃ³n. ResuÃ©lvelos.
+
+  \begin{itemize}
+  \item
+    Ver que en efecto {\textbackslash(y\_n=2\^{}n\textbackslash)}.
+  \item
+    Ver que la sucesiÃ³n de {\textbackslash(a\_n\textbackslash)} es
+    cÃ­clica.
+  \item
+    Ver que la sucesiÃ³n de {\textbackslash(b\_n\textbackslash)} puede
+    ser tan grande como se quiere. Como sugerencia, pon a
+    {\textbackslash(b\_\{n+4\}\textbackslash)} en tÃ©rminos de
+    {\textbackslash(b\_\{n\},b\_\{n+1\},b\_\{n+2\}\textbackslash)} para
+    mostrar que
+    {\textbackslash(\textbar b\_\{n+4\}\textbar\textbackslash geq
+    2\textbar b\_n\textbar\textbackslash)}.
+  \end{itemize}
+\item
+  En el problema de la cuenta de palabras que no tenÃ­an
+  {\textbackslash(AB\textbackslash)} encontramos el valor que nos
+  pidieron. Sin embargo, todo lo obtenido permite encontrar una fÃ³rmula
+  cerrada para {\textbackslash(n\textbackslash)} letras. EncuÃ©ntrala y
+  demuÃ©strala.
+\item
+  Adapta la soluciÃ³n de la lista de aÃ±os de inflaciÃ³n decreciente
+  para ahora mostrar la lista mÃ¡s larga de aÃ±os con soluciÃ³n
+  creciente.
+\item
+  Lee la siguiente entrada de blog para conocer mÃ¡s de las sucesiones
+  recursivas y de las recursiones lineales:
+  \href{https://blog.nekomath.com/seminario-de-resolucion-de-problemas-sucesiones-recursivas-y-recursiones-lineales/}{Sucesiones
+  recursivas y recursiones lineales} .
+\end{enumerate}
+
+\href{Induccion.html}{\emph{}}
+
+anterior
+
+Principio de inducciÃ³n
+
+\href{Extremo.html}{}
+
+siguiente
+
+Principio extremo
+
+\emph{}
+
+\emph{} Contenido
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[sucesiones-recursivas]{Sucesiones recursivas}
+\item
+  \hyperref[recursion-para-resolver-problemas]{RecursiÃ³n para resolver
+  problemas}
+\item
+  \hyperref[sucesiones-recursivas-lineales]{Sucesiones recursivas
+  lineales}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+Por Leonardo Ignacio MartÃ­nez Sandoval
+
+Â© Copyright 2022.\\

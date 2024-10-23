@@ -1,0 +1,796 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{DejaVu Serif}
+    \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{spanish}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{DejaVu Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Buscar un patrÃ³n --- MatemÃ¡ticas Discretas para Ciencia de Datos},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Buscar un patrÃ³n --- MatemÃ¡ticas Discretas para Ciencia de
+Datos}
+\author{}
+\date{}
+
+
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+        \setmainfont{DejaVu Serif}
+        \setmonofont{DejaVu Sans Mono}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{graphicx}
+        \usepackage{hyperref}
+        \usepackage[spanish]{babel}
+        
+\begin{document}
+\maketitle
+
+\phantomsection\label{main-content}
+{}
+
+\emph{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{../_sources/P1/BuscarPatron.ipynb}{{ \emph{} } {.ipynb}}
+\item
+  { \emph{} } {.pdf}
+\end{itemize}
+
+{ \emph{} }
+
+{}
+
+\phantomsection\label{jb-print-docs-body}
+\section{Buscar un patrÃ³n}\label{buscar-un-patruxe3uxb3n}
+
+\phantomsection\label{print-main-content}
+\phantomsection\label{jb-print-toc}
+\subsection{Contenido}\label{contenido}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[fibonaccis-y-residuos-que-dejan]{Fibonaccis y residuos que
+  dejan}
+\item
+  \hyperref[suma-por-renglones-en-el-triangulo-de-pascal]{Suma por
+  renglones en el triÃ¡ngulo de Pascal}
+\item
+  \hyperref[triangulo-de-pascal-con-saltos-de-tres-en-tres]{TriÃ¡ngulo
+  de Pascal con saltos de tres en tres}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+\phantomsection\label{searchbox}
+
+\phantomsection\label{buscar-un-patron}
+\section{\texorpdfstring{Buscar un
+patrÃ³n\hyperref[buscar-un-patron]{\#}}{Buscar un patrÃ³n\#}}\label{buscar-un-patruxe3uxb3n-1}
+
+\phantomsection\label{introduccion}
+\subsection{\texorpdfstring{IntroducciÃ³n\hyperref[introduccion]{\#}}{IntroducciÃ³n\#}}\label{introducciuxe3uxb3n}
+
+La heurÃ­stica de buscar un patrÃ³n consiste en tomar un problema,
+resolver casos pequeÃ±os o iniciales, y descubrir algo que estÃ©
+pasando. Esta es una idea muy general, pero puede ayudar a descubrir
+varias cosas. Por ejemplo, puede que:
+
+\begin{itemize}
+\item
+  Tras hacer algunos casos veamos una fÃ³rmula.
+\item
+  DespuÃ©s de jugar un poco con el problema, veamos que hay un ciclo que
+  aparece.
+\item
+  Al hacer algunas iteraciones de un problema, veamos que ciertos
+  nÃºmeros siempre son crecientes.
+\item
+  EtcÃ©tera.
+\end{itemize}
+
+El encontrar un patrÃ³n puede a veces dar de manera inmediata la
+soluciÃ³n que estamos buscando. Sin embargo, en la mayorÃ­a de los casos
+es simplemente un paso intermedio dentro de una soluciÃ³n mÃ¡s compleja.
+
+La exploraciÃ³n del problema puede ser hecha a mano o de manera
+computacional. En las siguientes secciones veremos algunos ejemplos de
+esto en acciÃ³n.
+
+\subsection{\texorpdfstring{Fibonaccis y residuos que
+dejan\hyperref[fibonaccis-y-residuos-que-dejan]{\#}}{Fibonaccis y residuos que dejan\#}}\label{fibonaccis-y-residuos-que-dejan}
+
+La sucesiÃ³n de Fibonacci es una de las mÃ¡s sencillas de definir.
+AdemÃ¡s, rapidamente encontramos patrones interesantes en ella. Es la
+sucesiÃ³n que comienza con {\textbackslash(0\textbackslash)}, luego
+{\textbackslash(1\textbackslash)} y a partir de ahÃ­ cada nÃºmero es la
+suma de los dos anteriores. AsÃ­, los primeros nÃºmeros de la sucesiÃ³n
+de Fibonacci son:
+
+\textbackslash{[}0,1,1,2,3,5,8,13,21,\textbackslash ldots\textbackslash{]}
+
+En sÃ­mbolos, es la sucesiÃ³n {\textbackslash(F\_n\textbackslash)} tal
+que {\textbackslash(F\_0=0\textbackslash)},
+{\textbackslash(F\_1=1\textbackslash)} y para
+{\textbackslash(n\textbackslash geq 0\textbackslash)} cumple que
+{\textbackslash(F\_\{n+2\}=F\_n+F\_\{n+1\}\textbackslash)}. Consideremos
+el siguiente problema.
+
+\textbf{Problema.} Sea
+{\textbackslash(\textbackslash\{F\_n\textbackslash\}\textbackslash)} la
+sucesiÃ³n de Fibonacci.
+
+\begin{itemize}
+\item
+  Encuentra para cuÃ¡ntos enteros {\textbackslash(n\textbackslash)} en
+  {\textbackslash(\textbackslash\{0,1,2,\textbackslash ldots,100\textbackslash\}\textbackslash)}
+  se cumple que {\textbackslash(F\_n\textbackslash)} es un mÃºltiplo de
+  {\textbackslash(3\textbackslash)}.
+\item
+  Encuentra para cuÃ¡ntos enteros {\textbackslash(n\textbackslash)} en
+  {\textbackslash(\textbackslash\{0,1,2,\textbackslash ldots,1000\textbackslash\}\textbackslash)}
+  se cumple que {\textbackslash(F\_n\textbackslash)} es un mÃºltiplo de
+  {\textbackslash(5\textbackslash)}.
+\end{itemize}
+
+\emph{SoluciÃ³n.} Comencemos con el primer inciso. Lo que podrÃ­amos
+hacer es comenzar a escribir a mano algunos nÃºmeros de Fibonacci y ver
+si encontramos algÃºn patrÃ³n evidente:
+{\textbackslash(0,1,1,2,3,5,8,13,21,\textbackslash ldots\textbackslash)}.
+
+Hasta aquÃ­, parece ser que los nÃºmeros de Fibonacci que son mÃºltiplos
+de {\textbackslash(3\textbackslash)} son
+{\textbackslash(F\_0\textbackslash)} y
+{\textbackslash(F\_4\textbackslash)}. Esto es muy poca evidencia para
+hacer una conjetura decente. Hagamos mÃ¡s casos.
+
+En vez de realizar esta labor a mano, podemos pedirle a la computadora
+que haga muchos casos mÃ¡s. El siguiente es un bloque de cÃ³digo en
+Python. Tras ejecutarlo, muestra los primeros 15 nÃºmeros de Fibonacci y
+su residuo al dividirse entre {\textbackslash(3\textbackslash)}. Por el
+momento no es tan importante por quÃ© el cÃ³digo funciona. MÃ¡s adelante
+platicaremos de cÃ³mo se nos puede ocurrir esto.
+
+\begin{verbatim}
+a,b=0,1
+
+for j in range(15):
+    print("Para n={}, Fn es {}. Su residuo al dividir entre 3 es {},".format(j,a,a%3))
+    a,b=b,a+b
+\end{verbatim}
+
+\begin{verbatim}
+Para n=0, Fn es 0. Su residuo al dividir entre 3 es 0,
+Para n=1, Fn es 1. Su residuo al dividir entre 3 es 1,
+Para n=2, Fn es 1. Su residuo al dividir entre 3 es 1,
+Para n=3, Fn es 2. Su residuo al dividir entre 3 es 2,
+Para n=4, Fn es 3. Su residuo al dividir entre 3 es 0,
+Para n=5, Fn es 5. Su residuo al dividir entre 3 es 2,
+Para n=6, Fn es 8. Su residuo al dividir entre 3 es 2,
+Para n=7, Fn es 13. Su residuo al dividir entre 3 es 1,
+Para n=8, Fn es 21. Su residuo al dividir entre 3 es 0,
+Para n=9, Fn es 34. Su residuo al dividir entre 3 es 1,
+Para n=10, Fn es 55. Su residuo al dividir entre 3 es 1,
+Para n=11, Fn es 89. Su residuo al dividir entre 3 es 2,
+Para n=12, Fn es 144. Su residuo al dividir entre 3 es 0,
+Para n=13, Fn es 233. Su residuo al dividir entre 3 es 2,
+Para n=14, Fn es 377. Su residuo al dividir entre 3 es 2,
+\end{verbatim}
+
+AquÃ­ parece ser mucho mÃ¡s claro cuÃ¡ndo un nÃºmero de Fibonacci es
+mÃºltiplo de {\textbackslash(3\textbackslash)}. De acuerdo a lo
+anterior, los nÃºmeros de Fibonacci que son mÃºltiplos de
+{\textbackslash(3\textbackslash)} son
+{\textbackslash(F\_0\textbackslash)},
+{\textbackslash(F\_4\textbackslash)},
+{\textbackslash(F\_8\textbackslash)} y
+{\textbackslash(F\_\{12\}\textbackslash)}, de donde ahora tenemos mÃ¡s
+evidencia para conjeturar lo siguiente.
+
+\textbf{Conjetura.} El Fibonacci {\textbackslash(F\_n\textbackslash)} es
+mÃºltiplo de {\textbackslash(3\textbackslash)} si y sÃ³lo si
+{\textbackslash(n\textbackslash)} es mÃºltiplo de
+{\textbackslash(4\textbackslash)}.
+
+De hecho, la exploraciÃ³n nos permite hacer una conjetura mucho mÃ¡s
+fuerte que nos dice quÃ© residuos van dejando los nÃºmeros de Fibonacci
+al dividirse entre {\textbackslash(3\textbackslash)}.
+
+\textbf{Conjetura.} Los residuos de la sucesiÃ³n de Fibonacci al dividir
+entre {\textbackslash(3\textbackslash)} se ciclan, con un ciclo de
+periodo {\textbackslash(8\textbackslash)} que es
+{\textbackslash(0,1,1,2,0,2,2,1\textbackslash)}.
+
+Podemos usar esta conjetura para sospechar cuÃ¡l es la respuesta al
+problema: hay {\textbackslash(26\textbackslash)} enteros
+{\textbackslash(n\textbackslash)} en el conjunto
+{\textbackslash(\textbackslash\{0,1,2,\textbackslash ldots,100\textbackslash\}\textbackslash)}
+tales que {\textbackslash(F\_n\textbackslash)} es mÃºltiplo de
+{\textbackslash(3\textbackslash)}, a saber cada uno de los mÃºltiplos de
+{\textbackslash(4\textbackslash)} en ese conjunto.
+
+Por supuesto, para estar totalmente seguros de esta respuesta tendrÃ­amos
+que verificar que en efecto el patrÃ³n se cumple. MÃ¡s adelante, cuando
+repasemos el principio de inducciÃ³n, retomaremos este problema y
+daremos una demostraciÃ³n formal de que los residuos se ciclan asÃ­.
+
+La segunda parte del problema queda para que tÃº realices una conjetura.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\phantomsection\label{suma-por-renglones-en-el-triangulo-de-pascal}
+\subsection{\texorpdfstring{Suma por renglones en el triÃ¡ngulo de
+Pascal\hyperref[suma-por-renglones-en-el-triangulo-de-pascal]{\#}}{Suma por renglones en el triÃ¡ngulo de Pascal\#}}\label{suma-por-renglones-en-el-triuxe3ngulo-de-pascal}
+
+Otro objeto matemÃ¡tico en el cual aparecen varios patrones interesantes
+es el triÃ¡ngulo de Pascal. A continuaciÃ³n se muestran sus primeros
+renglones.
+
+\begin{longtable}[]{@{}llllllllllll@{}}
+\toprule\noalign{}
+& & & & & & & & & & & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & & & & 1 & & & & & & \\
+& & & & 1 & & 1 & & & & & \\
+& & & 1 & & 2 & & 1 & & & & \\
+& & 1 & & 3 & & 3 & & 1 & & & \\
+& 1 & & 4 & & 6 & & 4 & & 1 & & \\
+1 & & 5 & & 10 & & 10 & & 5 & & 1 & \\
+\end{longtable}
+
+El triÃ¡ngulo de Pascal estÃ¡ construido como sigue. Al inicio, se
+coloca un uno hasta arriba. Luego, se van agregando renglones, cada vez
+con un nÃºmero mÃ¡s que el renglÃ³n anterior, con las siguientes reglas:
+
+\begin{itemize}
+\item
+  Si la posiciÃ³n estÃ¡ en los extremos, el nÃºmero que se agrega es
+  {\textbackslash(1\textbackslash)}.
+\item
+  Si la posiciÃ³n es intermedia, entonces es la suma de los dos nÃºmeros
+  que tenga arriba.
+\end{itemize}
+
+AsÃ­, por ejemplo, nota que el {\textbackslash(10\textbackslash)} en el
+sexto renglÃ³n del triÃ¡ngulo es la suma de los dos nÃºmeros que tiene
+arriba, es decir {\textbackslash(10=4+6\textbackslash)}. A partir de
+estas nociones bÃ¡sicas, podemos hacernos una pregunta con respecto a la
+suma de los elementos de cada renglÃ³n.
+
+\textbf{Pregunta.} Â¿CuÃ¡l es el primer renglÃ³n del triÃ¡ngulo de
+Pascal en el cual la suma de todos sus elementos es mayor o igual a un
+millÃ³n?
+
+\emph{SoluciÃ³n.} El problema nos invita a explorar cÃ³mo es la suma de
+los elementos en cada uno de los renglones del triÃ¡ngulo de Pascal.
+Coloquemos dicha suma hasta la derecha de cada renglÃ³n. Por ejemplo,
+como en el cuarto renglÃ³n la suma de los elementos es
+{\textbackslash(1+3+3+1=8\textbackslash)}, en la siguiente figura hemos
+puesto a {\textbackslash(8\textbackslash)} hasta la derecha, en
+negritas.
+
+\begin{longtable}[]{@{}llllllllllll@{}}
+\toprule\noalign{}
+& & & & & & & & & & & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & & & & 1 & & & & & & \textbf{1} \\
+& & & & 1 & & 1 & & & & & \textbf{2} \\
+& & & 1 & & 2 & & 1 & & & & \textbf{4} \\
+& & 1 & & 3 & & 3 & & 1 & & & \textbf{8} \\
+& 1 & & 4 & & 6 & & 4 & & 1 & & \textbf{16} \\
+1 & & 5 & & 10 & & 10 & & 5 & & 1 & \textbf{32} \\
+\end{longtable}
+
+AquÃ­ hay un patrÃ³n evidente (Â¿cuÃ¡l?). Si quisiÃ©remos obtener mÃ¡s
+evidencia de que este patrÃ³n sigue, podrÃ­amos pedirle a Python que
+hiciera mÃ¡s renglones del triÃ¡ngulo de Pascal, por ejemplo, que haga
+los primeros {\textbackslash(10\textbackslash)} renglones. Esto se logra
+mediante el siguiente cÃ³digo. Una vez mÃ¡s, puedes estudiar el cÃ³digo
+pero a estas alturas no es totalmente necesario que entiendas a
+profundidad quÃ© estÃ¡ haciendo.
+
+\begin{verbatim}
+renglon=[1]
+print("El renglÃ³n {} tiene suma {}".format(renglon,sum(renglon)))
+
+for j in range(1,10):
+    new_renglon=[]
+    for k in range(j+1):
+        if k==0 or k==j:
+            new_renglon.append(1)
+        else:
+            new_renglon.append(renglon[k-1]+renglon[k])
+    renglon=new_renglon
+    print("El renglÃ³n {} tiene suma {}".format(renglon,sum(renglon)))
+\end{verbatim}
+
+\begin{verbatim}
+El renglÃ³n [1] tiene suma 1
+El renglÃ³n [1, 1] tiene suma 2
+El renglÃ³n [1, 2, 1] tiene suma 4
+El renglÃ³n [1, 3, 3, 1] tiene suma 8
+El renglÃ³n [1, 4, 6, 4, 1] tiene suma 16
+El renglÃ³n [1, 5, 10, 10, 5, 1] tiene suma 32
+El renglÃ³n [1, 6, 15, 20, 15, 6, 1] tiene suma 64
+El renglÃ³n [1, 7, 21, 35, 35, 21, 7, 1] tiene suma 128
+El renglÃ³n [1, 8, 28, 56, 70, 56, 28, 8, 1] tiene suma 256
+El renglÃ³n [1, 9, 36, 84, 126, 126, 84, 36, 9, 1] tiene suma 512
+\end{verbatim}
+
+Con esto podemos realizar una conjetura. Para que nuestra conjetura
+quede un poco mÃ¡s simple, pensemos en que el renglÃ³n de hasta arriba
+es el renglÃ³n {\textbackslash(0\textbackslash)}, el siguiente es el
+renglÃ³n {\textbackslash(1\textbackslash)} y asÃ­ sucesivamente.
+
+\textbf{Conjetura.} La suma de los nÃºmeros en el renglÃ³n
+{\textbackslash(n\textbackslash)} del triÃ¡ngulo de Pascal es
+{\textbackslash(2\^{}n\textbackslash)}.
+
+MÃ¡s adelante, cuando hablemos de doble conteo, tendremos mÃ¡s
+herramientas para demostrar esto. Sin embargo, de momento tomÃ©moslo
+como un hecho y usÃ©moslo para responder el problema. Si queremos que
+los nÃºmeros de un renglÃ³n excedan un millÃ³n, entonces necesitamos que
+{\textbackslash(2\^{}n\textbackslash geq 1000000\textbackslash)}.
+Aprovechemos que podemos usar Python aquÃ­ para saber cuÃ¡ndo sucede
+esto.
+
+\begin{verbatim}
+n=0
+while 2**n<1000000:
+    n+=1
+print(n)
+\end{verbatim}
+
+\begin{verbatim}
+20
+\end{verbatim}
+
+AsÃ­, la primera vez que {\textbackslash(2\^{}n\textbackslash)} excede un
+millÃ³n (y por lo tanto la respuesta a nuestro problema) es con
+{\textbackslash(n=20\textbackslash)}.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+Hasta el final de la soluciÃ³n pudimos haber simplemente copiado el
+cÃ³digo anterior para que Python hiciera la suma de nuevo. Esto no serÃ­a
+ningÃºn problema, y lo harÃ­a muy rÃ¡pido. Sin embargo, de manera
+intuitiva es fÃ¡cil convencerse de que gracias a la conjetura se puede
+plantear el nuevo cÃ³digo y con Ã©l se hacen Â«muchas menos
+operacionesÂ». MÃ¡s adelante, cuando hablemos de complejidad
+computacional, formalizaremos esto.
+
+\phantomsection\label{triangulo-de-pascal-con-saltos-de-tres-en-tres}
+\subsection{\texorpdfstring{TriÃ¡ngulo de Pascal con saltos de tres en
+tres\hyperref[triangulo-de-pascal-con-saltos-de-tres-en-tres]{\#}}{TriÃ¡ngulo de Pascal con saltos de tres en tres\#}}\label{triuxe3ngulo-de-pascal-con-saltos-de-tres-en-tres}
+
+En los problemas anteriores el patrÃ³n que debemos encontrar sale muy
+rÃ¡pido. Esto no necesariamente serÃ¡ el caso cuando tengamos problemas
+mÃ¡s complicados. Veamos un problema en el que la exploraciÃ³n y los
+patrones que debemos encontrar son mucho mÃ¡s elaborados.
+
+\textbf{Problema.} Â¿CuÃ¡nto suman los elementos del renglÃ³n
+{\textbackslash(100\textbackslash)} del triÃ¡ngulo de Pascal si los
+sumamos comenzando con el primero y saltando de tres en tres?
+
+El problema sugiere ver en cada renglÃ³n cuÃ¡nto suman los elementos si
+saltamos de tres en tres. Es decir, para los primeros renglones del
+triÃ¡ngulo de Pascal la siguiente figura muestra en negritas los
+nÃºmeros que tendrÃ­amos que sumar en cada renglÃ³n.
+
+\begin{longtable}[]{@{}llllllllllll@{}}
+\toprule\noalign{}
+& & & & & & & & & & & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & & & & \textbf{1} & & & & & & \\
+& & & & \textbf{1} & & 1 & & & & & \\
+& & & \textbf{1} & & 2 & & 1 & & & & \\
+& & \textbf{1} & & 3 & & 3 & & \textbf{1} & & & \\
+& \textbf{1} & & 4 & & 6 & & \textbf{4} & & 1 & & \\
+\textbf{1} & & 5 & & 10 & & \textbf{10} & & 5 & & 1 & \\
+\end{longtable}
+
+EspecÃ­ficamente, queremos ver quÃ© sucede en el renglÃ³n
+{\textbackslash(100\textbackslash)}.
+
+\emph{SoluciÃ³n.} Si comenzamos a explorar el problema de manera
+directa, es muy probable que no encontremos un patrÃ³n de manera
+inmediata para la suma de los elementos que nos interesan. Llamando
+{\textbackslash(A\_n\textbackslash)} a la suma de los elementos del
+renglÃ³n {\textbackslash(n\textbackslash)} saltando de
+{\textbackslash(3\textbackslash)} en {\textbackslash(3\textbackslash)}
+nÃºmero que nos interesa, hasta el momento tenemos la siguiente tabla:
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Valor de {\textbackslash(n\textbackslash)} & Valor de
+{\textbackslash(A\_n\textbackslash)} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 1 \\
+1 & 1 \\
+2 & 1 \\
+3 & 2 \\
+4 & 5 \\
+5 & 11 \\
+\end{longtable}
+
+AquÃ­ no hay nada obvio sucediendo. Â¿QuÃ© sucede si le pedimos a Python
+que obtenga mÃ¡s valores?
+
+\begin{verbatim}
+renglon=[1]
+print("El renglÃ³n {} tiene suma {}".format(renglon,sum(renglon)))
+
+for j in range(1,15):
+    new_renglon=[]
+    for k in range(j+1):
+        if k==0 or k==j:
+            new_renglon.append(1)
+        else:
+            new_renglon.append(renglon[k-1]+renglon[k])
+    renglon=new_renglon
+    mult_3=renglon[0::3]
+    print("El renglÃ³n {} saltando de 3 en 3 tiene suma {}".format(renglon,sum(mult_3)))
+\end{verbatim}
+
+\begin{verbatim}
+El renglÃ³n [1] tiene suma 1
+El renglÃ³n [1, 1] saltando de 3 en 3 tiene suma 1
+El renglÃ³n [1, 2, 1] saltando de 3 en 3 tiene suma 1
+El renglÃ³n [1, 3, 3, 1] saltando de 3 en 3 tiene suma 2
+El renglÃ³n [1, 4, 6, 4, 1] saltando de 3 en 3 tiene suma 5
+El renglÃ³n [1, 5, 10, 10, 5, 1] saltando de 3 en 3 tiene suma 11
+El renglÃ³n [1, 6, 15, 20, 15, 6, 1] saltando de 3 en 3 tiene suma 22
+El renglÃ³n [1, 7, 21, 35, 35, 21, 7, 1] saltando de 3 en 3 tiene suma 43
+El renglÃ³n [1, 8, 28, 56, 70, 56, 28, 8, 1] saltando de 3 en 3 tiene suma 85
+El renglÃ³n [1, 9, 36, 84, 126, 126, 84, 36, 9, 1] saltando de 3 en 3 tiene suma 170
+El renglÃ³n [1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1] saltando de 3 en 3 tiene suma 341
+El renglÃ³n [1, 11, 55, 165, 330, 462, 462, 330, 165, 55, 11, 1] saltando de 3 en 3 tiene suma 683
+El renglÃ³n [1, 12, 66, 220, 495, 792, 924, 792, 495, 220, 66, 12, 1] saltando de 3 en 3 tiene suma 1366
+El renglÃ³n [1, 13, 78, 286, 715, 1287, 1716, 1716, 1287, 715, 286, 78, 13, 1] saltando de 3 en 3 tiene suma 2731
+El renglÃ³n [1, 14, 91, 364, 1001, 2002, 3003, 3432, 3003, 2002, 1001, 364, 91, 14, 1] saltando de 3 en 3 tiene suma 5461
+\end{verbatim}
+
+Tampoco hay nada muy obvio sucediendo. En ocasiones algunos problemas
+son asÃ­. No basta con explorar lo que nos estÃ¡n pidiendo, sino que
+ademÃ¡s debemos explorar otros elementos del problema que debemos
+introducir por nuestra cuenta. Para este problema la clave es ver quÃ©
+sucede no sÃ³lo con las sumas que nos interesan, sino tambiÃ©n con
+aquellas cuando empezamos desfasados en
+{\textbackslash(1\textbackslash)} o en {\textbackslash(2\textbackslash)}
+elementos.
+
+AsÃ­, tomemos {\textbackslash(B\_n\textbackslash)} como la suma de los
+elementos del renglÃ³n {\textbackslash(n\textbackslash)} saltando de
+{\textbackslash(3\textbackslash)} en {\textbackslash(3\textbackslash)},
+pero comenzando en el primer elemento. La siguiente figura muestra quÃ©
+nÃºmeros estamos sumando.
+
+\begin{longtable}[]{@{}llllllllllll@{}}
+\toprule\noalign{}
+& & & & & & & & & & & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & & & & 1 & & & & & & \\
+& & & & 1 & & \textbf{1} & & & & & \\
+& & & 1 & & \textbf{2} & & 1 & & & & \\
+& & 1 & & \textbf{3} & & 3 & & 1 & & & \\
+& 1 & & \textbf{4} & & 6 & & 4 & & \textbf{1} & & \\
+1 & & \textbf{5} & & 10 & & 10 & & \textbf{5} & & 1 & \\
+\end{longtable}
+
+Y tomemos {\textbackslash(C\_n\textbackslash)} como la suma de los
+elementos del renglÃ³n {\textbackslash(n\textbackslash)} saltando de
+{\textbackslash(3\textbackslash)} en {\textbackslash(3\textbackslash)},
+pero comenzando en el segundo elemento. La siguiente figura muestra quÃ©
+nÃºmeros estamos sumando.
+
+\begin{longtable}[]{@{}llllllllllll@{}}
+\toprule\noalign{}
+& & & & & & & & & & & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & & & & 1 & & & & & & \\
+& & & & 1 & & 1 & & & & & \\
+& & & 1 & & 2 & & \textbf{1} & & & & \\
+& & 1 & & 3 & & \textbf{3} & & 1 & & & \\
+& 1 & & 4 & & \textbf{6} & & 4 & & 1 & & \\
+1 & & 5 & & \textbf{10} & & 10 & & 5 & & \textbf{1} & \\
+\end{longtable}
+
+Ahora sÃ­, exploremos conjuntamente a los valores de
+{\textbackslash(A\_n\textbackslash)},
+{\textbackslash(B\_n\textbackslash)} y
+{\textbackslash(C\_n\textbackslash)}. En la siguiente tabla puedes ver
+los valores para {\textbackslash(n\textbackslash)},
+{\textbackslash(A\_n\textbackslash)},
+{\textbackslash(B\_n\textbackslash)} y
+{\textbackslash(C\_n\textbackslash)}.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Valor de {\textbackslash(n\textbackslash)} & Valor de
+{\textbackslash(A\_n\textbackslash)} & Valor de
+{\textbackslash(B\_n\textbackslash)} & Valor de
+{\textbackslash(C\_n\textbackslash)} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 & 1 & 0 & 0 \\
+1 & 1 & 1 & 0 \\
+2 & 1 & 2 & 1 \\
+3 & 2 & 3 & 3 \\
+4 & 5 & 5 & 6 \\
+5 & 11 & 10 & 11 \\
+\end{longtable}
+
+Aunque no hayamos hecho cuentas computacionales, Â¡el patrÃ³n comienza a
+revelarse! Parece ser que sucede todo lo siguiente:
+
+\begin{itemize}
+\item
+  Para cada {\textbackslash(n\textbackslash)}, dos de los valores
+  {\textbackslash(A\_n\textbackslash)},
+  {\textbackslash(B\_n\textbackslash)} y
+  {\textbackslash(C\_n\textbackslash)} son iguales y el tercero es
+  distinto sÃ³lo en una unidad.
+\item
+  Alternadamente, el distinto es mayor y menor.
+\item
+  Ciclicamente el disinto es {\textbackslash(A\_n\textbackslash)}, luego
+  {\textbackslash(C\_n\textbackslash)}, luego
+  {\textbackslash(B\_n\textbackslash)}.
+\item
+  La suma de {\textbackslash(A\_n\textbackslash)} con
+  {\textbackslash(B\_n\textbackslash)} es
+  {\textbackslash(B\_\{n+1\}\textbackslash)}.
+\item
+  La suma de {\textbackslash(B\_n\textbackslash)} con
+  {\textbackslash(C\_n\textbackslash)} es
+  {\textbackslash(C\_\{n+1\}\textbackslash)}.
+\item
+  La suma de {\textbackslash(C\_n\textbackslash)} con
+  {\textbackslash(A\_n\textbackslash)} es
+  {\textbackslash(A\_\{n+1\}\textbackslash)}.
+\end{itemize}
+
+Una vez mÃ¡s, dejaremos pendiente la demostraciÃ³n de estas conjeturas
+(todas ellas ciertas) y usaremos su validez de momento sin
+demostraciÃ³n. Lo que sugieren es que para cuando
+{\textbackslash(n=100\textbackslash)}, se tiene que el nÃºmero distinto
+a los otros dos es {\textbackslash(C\_\{100\}\textbackslash)} y que es
+una unidad mÃ¡s grande que {\textbackslash(A\_\{100\}\textbackslash)} y
+{\textbackslash(B\_\{100\}\textbackslash)}.
+
+Pero ademÃ¡s por el problema anterior sabemos algo crucial de
+{\textbackslash(A\_\{100\}\textbackslash)},
+{\textbackslash(B\_\{100\}\textbackslash)} y
+{\textbackslash(C\_\{100\}\textbackslash)}: su suma es
+{\textbackslash(2\^{}\{100\}\textbackslash)}. De esta manera, si
+{\textbackslash(A\_\{100\}=x\textbackslash)}, entonces
+{\textbackslash(B\_\{100\}=x\textbackslash)} y
+{\textbackslash(C\_\{100\}=x+1\textbackslash)} y por lo tanto
+
+\textbackslash{[}3x+1=2\^{}\{100\}.\textbackslash{]}
+
+De aquÃ­ obtenemos el valor
+{\textbackslash(A\_\{100\}=x=\textbackslash frac\{2\^{}\{100\}-1\}\{3\}\textbackslash)}
+que buscÃ¡bamos. {{\textbackslash(\textbackslash square\textbackslash)}}
+
+\subsection{\texorpdfstring{Tarea
+moral\hyperref[tarea-moral]{\#}}{Tarea moral\#}}\label{tarea-moral}
+
+Los siguientes problemas te ayudarÃ¡n a practicar lo visto en esta
+entrada. Para resolverlos, necesitarÃ¡s usar herramientas matemÃ¡ticas,
+computacionales o ambas.
+
+\begin{enumerate}
+\item
+  Si se dibuja una recta en el plano, entonces queda dividido en dos
+  regiones. Si se dibujan dos rectas (no paralelas), queda dividido en
+  cuatro. Si de dibujan tres rectas (sin paralelas ni tripes
+  intersecciones), queda dividido en siete. Â¿QuÃ© sucede con cuatro
+  rectas? Â¿CuÃ¡ntas regiones nuevas se hacen? Â¿Y si son en total
+  {\textbackslash(10\textbackslash)} rectas? Â¿Si son
+  {\textbackslash(10000\textbackslash)}?
+\item
+  Considera la sucesiÃ³n {\textbackslash(a\_n\textbackslash)} definida
+  como sigue. El valor de {\textbackslash(a\_0\textbackslash)} es
+  {\textbackslash(0\textbackslash)}, el de
+  {\textbackslash(a\_1\textbackslash)} es
+  {\textbackslash(1\textbackslash)}, el de
+  {\textbackslash(a\_2\textbackslash)} es
+  {\textbackslash(2\textbackslash)} y para
+  {\textbackslash(n\textbackslash geq 0\textbackslash)} se cumple que
+  {\textbackslash(a\_\{n+3\}=a\_\{n+2\}-a\_\{n+1\}+a\_n\textbackslash)}.
+  Â¿SucederÃ¡ en algÃºn momento que {\textbackslash(a\_n\textbackslash)}
+  exceda {\textbackslash(100\textbackslash)}? Â¿QuÃ© sucede si cambiamos
+  los nÃºmeros iniciales a {\textbackslash(a\_0=3\textbackslash)},
+  {\textbackslash(a\_1=5\textbackslash)} y
+  {\textbackslash(a\_2=9\textbackslash)}?
+\item
+  Hay otra cosa interesante que sucede con el triÃ¡ngulo de Pascal. En
+  vez de sumar por renglones, podemos sumar por \emph{diagonales}. Una
+  diagonal del triÃ¡ngulo de Pascal consiste en comenzar con el primer
+  nÃºmero de un renglÃ³n, luego el segundo del renglÃ³n de arriba, luego
+  el tercero del renglÃ³n de arriba y asÃ­ sucesivamente hasta que ya no
+  podamos sumar mÃ¡s.
+
+  Un ejemplo de diagonal es el siguiente:
+
+  \begin{longtable}[]{@{}llllllllllll@{}}
+  \toprule\noalign{}
+  & & & & & & & & & & & \\
+  \midrule\noalign{}
+  \endhead
+  \bottomrule\noalign{}
+  \endlastfoot
+  & & & & & 1 & & & & & & \\
+  & & & & 1 & & \textbf{1} & & & & & \\
+  & & & \textbf{1} & & 2 & & 1 & & & & \\
+  & & 1 & & 3 & & 3 & & 1 & & & \\
+  & 1 & & 4 & & 6 & & 4 & & 1 & & \\
+  1 & & 5 & & 10 & & 10 & & 5 & & 1 & \\
+  \end{longtable}
+
+  Si sumamos en esta diagonal, da {\textbackslash(2\textbackslash)}.
+
+  AquÃ­ hay otro ejemplo de una diagonal:
+
+  \begin{longtable}[]{@{}llllllllllll@{}}
+  \toprule\noalign{}
+  & & & & & & & & & & & \\
+  \midrule\noalign{}
+  \endhead
+  \bottomrule\noalign{}
+  \endlastfoot
+  & & & & & 1 & & & & & & \\
+  & & & & 1 & & 1 & & & & & \\
+  & & & 1 & & 2 & & 1 & & & & \\
+  & & 1 & & 3 & & \textbf{3} & & 1 & & & \\
+  & 1 & & \textbf{4} & & 6 & & 4 & & 1 & & \\
+  \textbf{1} & & 5 & & 10 & & 10 & & 5 & & 1 & \\
+  \end{longtable}
+
+  Si sumamos en esta diagonal, da {\textbackslash(8\textbackslash)}.
+
+  Â¿CuÃ¡nto suman las entradas de la diagonal que comienza en el
+  renglÃ³n {\textbackslash(n\textbackslash)}?
+\item
+  En el Ãºltimo problema de la entrada pudimos simplemente haberle
+  pedido a Python de manera computacional que encontrara el valor
+  buscado. Haz esto y verifica que coincide con la fÃ³rmula que
+  encontramos. Â¿QuÃ© ventaja tiene entonces haber encontrado una
+  fÃ³rmula?
+\item
+  Â¿SerÃ¡ cierto que para cualquier entero positivo
+  {\textbackslash(k\textbackslash)} la sucesiÃ³n de Fibonacci tiene una
+  infinidad de mÃºltiplos de {\textbackslash(k\textbackslash)}?
+  Modificando el cÃ³digo de este capÃ­tulo, realiza varios experimentos
+  computacionales para conjeturar si es cierto o no.
+\end{enumerate}
+
+\href{IntroCombinatoria.html}{\emph{}}
+
+anterior
+
+Fundamentos de combinatoria
+
+\href{Casillas.html}{}
+
+siguiente
+
+Principio de las casillas
+
+\emph{}
+
+\emph{} Contenido
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[fibonaccis-y-residuos-que-dejan]{Fibonaccis y residuos que
+  dejan}
+\item
+  \hyperref[suma-por-renglones-en-el-triangulo-de-pascal]{Suma por
+  renglones en el triÃ¡ngulo de Pascal}
+\item
+  \hyperref[triangulo-de-pascal-con-saltos-de-tres-en-tres]{TriÃ¡ngulo
+  de Pascal con saltos de tres en tres}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+Por Leonardo Ignacio MartÃ­nez Sandoval
+
+Â© Copyright 2022.\\
+
+\end{document}

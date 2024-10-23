@@ -1,0 +1,546 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{DejaVu Serif}
+    \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{spanish}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{DejaVu Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Principio de doble conteo y coeficientes binomiales --- MatemÃ¡ticas Discretas para Ciencia de Datos},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Principio de doble conteo y coeficientes binomiales ---
+MatemÃ¡ticas Discretas para Ciencia de Datos}
+\author{}
+\date{}
+
+
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+        \setmainfont{DejaVu Serif}
+        \setmonofont{DejaVu Sans Mono}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{graphicx}
+        \usepackage{hyperref}
+        \usepackage[spanish]{babel}
+        
+\begin{document}
+\maketitle
+
+\phantomsection\label{main-content}
+{}
+
+\emph{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{../_sources/P1/DobleConteo.ipynb}{{ \emph{} } {.ipynb}}
+\item
+  { \emph{} } {.pdf}
+\end{itemize}
+
+{ \emph{} }
+
+{}
+
+\phantomsection\label{jb-print-docs-body}
+\section{Principio de doble conteo y coeficientes
+binomiales}\label{principio-de-doble-conteo-y-coeficientes-binomiales}
+
+\phantomsection\label{print-main-content}
+\phantomsection\label{jb-print-toc}
+\subsection{Contenido}\label{contenido}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[principio-de-doble-conteo]{Principio de doble conteo}
+\item
+  \hyperref[coeficientes-binomiales-y-su-formula]{Coeficientes
+  binomiales y su fÃ³rmula}
+\item
+  \hyperref[la-formula-de-pascal]{La fÃ³rmula de Pascal}
+\item
+  \hyperref[exploracion-computacional-del-triangulo-de-pascal]{ExploraciÃ³n
+  computacional del triÃ¡ngulo de Pascal}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+\phantomsection\label{searchbox}
+
+\phantomsection\label{principio-de-doble-conteo-y-coeficientes-binomiales}
+\section{\texorpdfstring{Principio de doble conteo y coeficientes
+binomiales\hyperref[principio-de-doble-conteo-y-coeficientes-binomiales]{\#}}{Principio de doble conteo y coeficientes binomiales\#}}\label{principio-de-doble-conteo-y-coeficientes-binomiales-1}
+
+\phantomsection\label{introduccion}
+\subsection{\texorpdfstring{IntroducciÃ³n\hyperref[introduccion]{\#}}{IntroducciÃ³n\#}}\label{introducciuxe3uxb3n}
+
+En esta entrada supondremos que estÃ¡s familiarizado con las nociones
+bÃ¡sicas de conteo combinatorio: la enumeraciÃ³n, la regla de la suma,
+la regla del producto y las permutaciones. En caso de no ser asÃ­, te
+recomendamos revisar el siguiente material:
+
+\begin{itemize}
+\item
+  Los videos de Combinatoria en la pÃ¡gina
+  \url{https://blog.nekomath.com/videos/}
+\item
+  El artÃ­culo Â«Estrategias bÃ¡sicas de conteoÂ» en la revista Tzaloa
+  2011-2:\url{https://www.ommenlinea.org/wp-content/uploads/2011/06/Tzaloa-2-2011.pdf}
+\end{itemize}
+
+Lo que haremos ahora es introducir un principio nuevo: el de doble
+conteo. La idea es muy sencilla: dos formas distintas y vÃ¡lidas de
+contar una familia de objetos deben de dar cantidades iguales. Al contar
+de manera creativa, esto se puede utilizar para la resoluciÃ³n de muchos
+problemas. En particular, veremos cÃ³mo estas ideas se aplican al
+desarrollo de la teorÃ­a de coeficientes binomiales.
+
+\subsection{\texorpdfstring{Principio de doble
+conteo\hyperref[principio-de-doble-conteo]{\#}}{Principio de doble conteo\#}}\label{principio-de-doble-conteo}
+
+El principio de doble conteo dice lo siguiente.
+
+\textbf{ProposiciÃ³n.} Supongamos que tenemos un conjunto
+{\textbackslash(X\textbackslash)} de objetos. Supongamos que dos
+estrategias de conteo distintas, pero vÃ¡lidas, nos dicen que
+{\textbackslash(X\textbackslash)} tiene por un lado
+{\textbackslash(A\textbackslash)} elementos y por otro lado
+{\textbackslash(B\textbackslash)} elementos. Entonces,
+{\textbackslash(A=B\textbackslash)}.
+
+Probemos con este principio un resultado clÃ¡sico.
+
+\textbf{Problema.} Muestra que
+
+\textbackslash{[}1+2+3+\textbackslash ldots+n=\textbackslash frac\{n(n+1)\}\{2\}.\textbackslash{]}
+
+\emph{SoluciÃ³n.} Realicemos una demostraciÃ³n por doble conteo. Para
+ello, introducimos un problema auxiliar. Contaremos cuÃ¡ntas parejas
+{\textbackslash((a,b)\textbackslash)} existen para las cuales
+{\textbackslash(a\textbackslash)} es distinto de
+{\textbackslash(b\textbackslash)} y {\textbackslash(a,b\textbackslash)}
+son nÃºmeros de {\textbackslash(1\textbackslash)} a
+{\textbackslash(n+1\textbackslash)}.
+
+Una forma de contar es la siguiente. La primera entrada tiene
+{\textbackslash(n+1\textbackslash)} posibilidades. Una vez fija, la
+segunda entrada tiene {\textbackslash(n\textbackslash)} posibilidades.
+AsÃ­, por el principio del producto una posible respuesta al problema de
+conteo es {\textbackslash(n(n+1)\textbackslash)}.
+
+Otra forma de contar es la siguiente. Supongamos de momento que
+{\textbackslash(a\textgreater b\textbackslash)}.
+
+\begin{itemize}
+\item
+  Si {\textbackslash(a=1\textbackslash)}, entonces
+  {\textbackslash(b\textbackslash)} no tiene posiblidades.
+\item
+  Si {\textbackslash(a=2\textbackslash)}, entonces
+  {\textbackslash(b\textbackslash)} tiene una posibilidad.
+\item
+  Si {\textbackslash(a=3\textbackslash)}, entonces
+  {\textbackslash(b\textbackslash)} tiene dos posibilidades.
+\item
+  {\textbackslash(\textbackslash ldots\textbackslash)}
+\item
+  Si {\textbackslash(a=n+1\textbackslash)}, entonces
+  {\textbackslash(b\textbackslash)} tiene
+  {\textbackslash(n+1\textbackslash)} posibilidades.
+\end{itemize}
+
+AsÃ­, hay {\textbackslash(1+2+\textbackslash ldots+n\textbackslash)}
+posiblidades. Pero faltan los casos con
+{\textbackslash(b\textgreater a\textbackslash)}, que por simetrÃ­a son
+los mismos. AsÃ­, tenemos que:
+
+\textbackslash{[}2(1+2+\textbackslash ldots+n) = \textbackslash text\{
+nÃºmero de parejas (a,b) \} =n(n+1).\textbackslash{]}
+
+Dividiendo entre {\textbackslash(2\textbackslash)} obtenemos el
+resultado deseado.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\phantomsection\label{coeficientes-binomiales-y-su-formula}
+\subsection{\texorpdfstring{Coeficientes binomiales y su
+fÃ³rmula\hyperref[coeficientes-binomiales-y-su-formula]{\#}}{Coeficientes binomiales y su fÃ³rmula\#}}\label{coeficientes-binomiales-y-su-fuxe3uxb3rmula}
+
+QuizÃ¡s hayas encontrado con anterioridad a los coeficientes binomiales.
+Para un entero {\textbackslash(n\textbackslash geq 0\textbackslash)} y
+un entero {\textbackslash(k\textbackslash)} con
+{\textbackslash(0\textbackslash leq k \textbackslash leq
+n\textbackslash)}, se puede definir el sÃ­mbolo
+{\textbackslash(\textbackslash binom\{n\}\{k\}\textbackslash)} de varias
+maneras. Nosotros eligiremos definir al coeficiente binomial
+{\textbackslash(\textbackslash binom\{n\}\{k\}\textbackslash)} a partir
+de su propiedad combinatoria fundamental.
+
+\textbf{DefiniciÃ³n.} El coeficiente binomial
+{\textbackslash(\textbackslash binom\{n\}\{k\}\textbackslash)} es la
+cantidad de subconjuntos de tamaÃ±o {\textbackslash(k\textbackslash)}
+que tiene un conjunto de tamaÃ±o {\textbackslash(n\textbackslash)}.
+
+AsÃ­, estrictamente hablando, si quisiÃ©ramos calcular cuÃ¡nto vale el
+coeficiente binomial
+{\textbackslash(\textbackslash binom\{4\}\{2\}\textbackslash)},
+tendrÃ­amos que tomar un conjunto con cuatro elementos, por ejemplo
+{\textbackslash(\textbackslash\{A,B,C,D\textbackslash\}\textbackslash)},
+enlistar todos sus subconjuntos con dos elementos:
+
+\textbackslash{[}\textbackslash\{A,B\textbackslash\},\textbackslash\{A,C\textbackslash\},\textbackslash\{A,D\textbackslash\},\textbackslash\{B,C\textbackslash\},\textbackslash\{B,D\textbackslash\},\textbackslash\{C,D\textbackslash\},\textbackslash{]}
+
+y contarlos. Como son {\textbackslash(6\textbackslash)}, entonces
+{\textbackslash(\textbackslash binom\{4\}\{2\}=6\textbackslash)}.
+
+Esto no es muy prÃ¡ctico para valores grandes de
+{\textbackslash(n\textbackslash)} y {\textbackslash(k\textbackslash)},
+pues tendrÃ­amos que enlistar muchos subconjuntos. AsÃ­, es importante
+encontrar una mejor fÃ³rmula para
+{\textbackslash(\textbackslash binom\{n\}\{k\}\textbackslash)}. Lo
+hacemos como sigue:
+
+\textbf{ProposiciÃ³n.} Se tiene que
+
+\textbackslash{[}\textbackslash binom\{n\}\{k\}=\textbackslash frac\{n!\}\{k!(n-k)!\}.\textbackslash{]}
+
+\emph{DemostraciÃ³n.} Tomemos pelotas numeradas del
+{\textbackslash(1\textbackslash)} al {\textbackslash(n\textbackslash)}.
+Â¿CuÃ¡ntas formas hay de ordenarlas en una lÃ­nea? Por un lado, hay
+{\textbackslash(n!\textbackslash)} formas:
+{\textbackslash(n\textbackslash)} opciones para el primer lugar,
+{\textbackslash(n-1\textbackslash)} opciones para el segundo, etc. Estos
+nÃºmeros se multiplican y obtenemos el valor
+{\textbackslash(n\textbackslash cdot (n-1) \textbackslash cdot
+(n-2)\textbackslash cdot \textbackslash ldots \textbackslash cdot 1 =
+n!\textbackslash)}.
+
+Hay otra forma de saber de cuÃ¡ntas formas podemos ordenar las pelotas.
+Primero podemos decidir cuÃ¡les serÃ¡n las primeras
+{\textbackslash(k\textbackslash)} pelotas. Esto se puede hacer de
+{\textbackslash(\textbackslash binom\{n\}\{k\}\textbackslash)} formas,
+pues es elegir un subconjunto {\textbackslash(K\textbackslash)} de
+tamaÃ±o {\textbackslash(k\textbackslash)}. Luego, hay que elegir una
+forma de acomodar estas {\textbackslash(k\textbackslash)} pelotas, que
+se puede hacer de {\textbackslash(k!\textbackslash)} formas (por el
+arugmento de arriba). Finalmente, quedan
+{\textbackslash(n-k\textbackslash)} pelotas que debemos decir cÃ³mo
+acomodar. Esto se puede hacer de {\textbackslash((n-k)!\textbackslash)}
+formas. AsÃ­, hay
+{\textbackslash(\textbackslash binom\{n\}\{k\}k!(n-k)!\textbackslash)}
+formas de acomodar las pelotas.
+
+Como estamos contando exactamente lo mismo, debemos tener que
+
+\textbackslash{[}n!=\textbackslash binom\{n\}\{k\}k!(n-k)!,\textbackslash{]}
+
+de donde se obtiene la fÃ³rmula que buscamos despejando
+{\textbackslash(\textbackslash binom\{n\}\{k\}\textbackslash)}.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\phantomsection\label{la-formula-de-pascal}
+\subsection{\texorpdfstring{La fÃ³rmula de
+Pascal\hyperref[la-formula-de-pascal]{\#}}{La fÃ³rmula de Pascal\#}}\label{la-fuxe3uxb3rmula-de-pascal}
+
+Los coeficientes binomiales con {\textbackslash(k=0\textbackslash)} o
+{\textbackslash(k=n\textbackslash)} son muy fÃ¡ciles: simplemente son
+iguales a {\textbackslash(1\textbackslash)}. Para calcular el resto de
+los coeficientes binomiales podemos proceder Â«poco a pocoÂ». Cada uno
+de ellos es una suma de dos Â«mÃ¡s pequeÃ±osÂ». Esto se formaliza
+mediante el siguiente resultado.
+
+\textbf{ProposiciÃ³n.} Para un entero
+{\textbackslash(n\textbackslash geq 0\textbackslash)} y un entero
+{\textbackslash(k\textbackslash)} con
+{\textbackslash(0\textbackslash leq k \textbackslash leq
+n-1\textbackslash)} se tiene que
+
+\textbackslash{[}\textbackslash binom\{n+1\}\{k+1\}=\textbackslash binom\{n\}\{k\}+\textbackslash binom\{n\}\{k+1\}.\textbackslash{]}
+
+A esta se le conoce como la \textbf{identidad de Pascal} para los
+coeficientes binomiales. Observa que nos estÃ¡ diciendo que los
+coeficientes binomiales justo cumplen la regla del triÃ¡ngulo de Pascal:
+cada uno es o bien igual a uno (en los extremos) o bien la suma de dos
+anteriores con un valor menor que {\textbackslash(n\textbackslash)} (es
+decir Â«en el renglÃ³n anteriorÂ»). Una vez que hayamos demostrado esta
+fÃ³rmula, tendremos la garantÃ­a de que el triÃ¡ngulo de Pascal se ve
+asÃ­:
+
+\begin{longtable}[]{@{}llllllllllll@{}}
+\toprule\noalign{}
+& & & & & & & & & & & \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+& & & & & {\textbackslash(\textbackslash binom\{0\}\{0\}\textbackslash)}
+& & & & & & \\
+& & & & {\textbackslash(\textbackslash binom\{1\}\{0\}\textbackslash)} &
+& {\textbackslash(\textbackslash binom\{1\}\{1\}\textbackslash)} & & & &
+& \\
+& & & {\textbackslash(\textbackslash binom\{2\}\{0\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{2\}\{1\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{2\}\{2\}\textbackslash)} & & &
+& \\
+& & {\textbackslash(\textbackslash binom\{3\}\{0\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{3\}\{1\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{3\}\{2\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{3\}\{3\}\textbackslash)} & & & \\
+& {\textbackslash(\textbackslash binom\{4\}\{0\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{4\}\{1\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{4\}\{2\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{4\}\{3\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{4\}\{4\}\textbackslash)} & & \\
+{\textbackslash(\textbackslash binom\{5\}\{0\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{5\}\{1\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{5\}\{2\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{5\}\{3\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{5\}\{4\}\textbackslash)} & &
+{\textbackslash(\textbackslash binom\{5\}\{5\}\textbackslash)} & \\
+\end{longtable}
+
+Veamos dos maneras de demostrar la identidad de Pascal. Una es
+\emph{combinatoria} y la otra es \emph{algebraica}.
+
+\emph{DemostraciÃ³n.} La demostraciÃ³n combinatoria es por doble conteo.
+Podemos hacernos la siguiente pregunta: Â¿cuÃ¡ntos subconjuntos de
+tamaÃ±o {\textbackslash(k+1\textbackslash)} tiene el conjunto
+{\textbackslash(\textbackslash\{1,2,\textbackslash ldots,n+1\textbackslash\}\textbackslash)}?
+Por un lado, por la definiciÃ³n de coeficientes binomiales este nÃºmero
+es {\textbackslash(\textbackslash binom\{n+1\}\{k+1\}\textbackslash)}.
+Por otro lado, podemos ver cuÃ¡ntos tienen a
+{\textbackslash(n+1\textbackslash)} y cuÃ¡ntos no. Los que tienen a
+{\textbackslash(n+1\textbackslash)} consisten de ese elemento y de otros
+{\textbackslash(k\textbackslash)} elementos elegidos en
+{\textbackslash(\textbackslash\{1,2,\textbackslash ldots,n\textbackslash\}\textbackslash)},
+asÃ­ que son
+{\textbackslash(\textbackslash binom\{n\}\{k\}\textbackslash)}. Los que
+no tienen a {\textbackslash(n+1\textbackslash)} consisten de elegir
+{\textbackslash(k+1\textbackslash)} elementos en
+{\textbackslash(\textbackslash\{1,2\textbackslash ldots,n\textbackslash\}\textbackslash)},
+de modo que son
+{\textbackslash(\textbackslash binom\{n\}\{k+1\}\textbackslash)}. AsÃ­,
+como estamos contando la misma cosa, tenemos que
+
+\textbackslash{[}\textbackslash binom\{n+1\}\{k+1\}=\textbackslash binom\{n\}\{k\}+\textbackslash binom\{n\}\{k+1\}.\textbackslash{]}
+
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+Esto es una demostraciÃ³n perfectamente vÃ¡lida y podrÃ­amos concluir
+aquÃ­. Pero demos ahora una demostraciÃ³n algebraica. Para ella, usamos
+la fÃ³rmula que ya conocemos.
+
+\emph{DemostaciÃ³n.} Procedemos como sigue:
+
+\textbackslash{[}\textbackslash begin\{align*\}
+\textbackslash binom\{n\}\{k\}+\textbackslash binom\{n\}\{k+1\}\&=\textbackslash frac\{n!\}\{k!(n-k)!\}+\textbackslash frac\{n!\}\{(k+1)!(n-k-1)!\}\textbackslash\textbackslash{}
+\&=\textbackslash frac\{n!\}\{k!(n-k-1)!\}\textbackslash left(\textbackslash frac\{1\}\{n-k\}+\textbackslash frac\{1\}\{k+1\}\textbackslash right)\textbackslash\textbackslash{}
+\&=\textbackslash frac\{n!\}\{k!(n-k-1)!\}\textbackslash cdot
+\textbackslash frac\{n+1\}\{(n-k)(k+1)\}\textbackslash\textbackslash{}
+\&=\textbackslash frac\{(n+1)!\}\{(k+1)!(n-k)!\}\textbackslash\textbackslash{}
+\&=\textbackslash binom\{n+1\}\{k+1\}.
+\textbackslash end\{align*\}\textbackslash{]}
+
+En la segunda igualdad factorizamos lo mÃ¡s que podemos. Luego hacemos
+la operaciÃ³n con fracciones, reagrupamos y volvemos a usar la fÃ³rmula,
+pero ahora para
+{\textbackslash(\textbackslash binom\{n+1\}\{k+1\}\textbackslash)}.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\phantomsection\label{exploracion-computacional-del-triangulo-de-pascal}
+\subsection{\texorpdfstring{ExploraciÃ³n computacional del triÃ¡ngulo de
+Pascal\hyperref[exploracion-computacional-del-triangulo-de-pascal]{\#}}{ExploraciÃ³n computacional del triÃ¡ngulo de Pascal\#}}\label{exploraciuxe3uxb3n-computacional-del-triuxe3ngulo-de-pascal}
+
+Una de las aplicaciones de la fÃ³rmula de Pascal es que nos permite
+escribir cÃ³digo para calcular los coeficientes binomiales, y por lo
+tanto para mostrar el triÃ¡ngulo de Pascal. En la siguiente celda
+podrÃ¡s encontrar una forma de hacer esto. La funciÃ³n
+{\texttt{t\_pascal}} muestra los primeros
+{\textbackslash(n\textbackslash)} renglones del triÃ¡ngulo de Pascal. El
+primero y segundo renglÃ³n son fÃ¡ciles de dar de manera explÃ­cita. Los
+siguientes renglones son calculados usando la fÃ³rmula de Pascal. No
+entraremos mucho mÃ¡s en los detalles de lo que estÃ¡ sucediendo, pues
+los discutiremos mÃ¡s adelante cuando hablamos de programaciÃ³n
+dinÃ¡mica.
+
+\begin{verbatim}
+def t_pascal(n):
+    renglon=[1]
+    for j in range(n):
+        nuevo_renglon=[]
+        for k in range(j+1):
+            if k==0 or k==j:
+                nuevo_renglon.append(1)
+            else:
+                nuevo_renglon.append(renglon[k-1]+renglon[k])
+        print(nuevo_renglon)
+        renglon=nuevo_renglon
+
+t_pascal(10)
+\end{verbatim}
+
+\begin{verbatim}
+[1]
+[1, 1]
+[1, 2, 1]
+[1, 3, 3, 1]
+[1, 4, 6, 4, 1]
+[1, 5, 10, 10, 5, 1]
+[1, 6, 15, 20, 15, 6, 1]
+[1, 7, 21, 35, 35, 21, 7, 1]
+[1, 8, 28, 56, 70, 56, 28, 8, 1]
+[1, 9, 36, 84, 126, 126, 84, 36, 9, 1]
+\end{verbatim}
+
+\subsection{\texorpdfstring{Tarea
+moral\hyperref[tarea-moral]{\#}}{Tarea moral\#}}\label{tarea-moral}
+
+Los siguientes problemas te ayudarÃ¡n a practicar lo visto en esta
+entrada. Para resolverlos, necesitarÃ¡s usar herramientas matemÃ¡ticas,
+computacionales o ambas.
+
+\begin{enumerate}
+\item
+  Da una demostraciÃ³n por doble conteo para la siguiente igualdad:
+
+  \textbackslash{[}1\textbackslash cdot 1! + 2\textbackslash cdot 2! +
+  3\textbackslash cdot 3! + \textbackslash ldots + n\textbackslash cdot
+  n! = (n+1)! - 1.\textbackslash{]}
+\item
+  Realiza una exploraciÃ³n computacional para conjeturar cuÃ¡les son los
+  renglones del triÃ¡ngulo de Pascal en donde todos los nÃºmeros son
+  impares.
+\item
+  La siguiente igualdad siempre se cumple:
+
+  \textbackslash{[}\textbackslash binom\{n\}\{1\}+2\textbackslash binom\{n\}\{2\}+3\textbackslash binom\{n\}\{3\}+\textbackslash ldots+n\textbackslash binom\{n\}\{n\}=n2\^{}\{n-1\}.\textbackslash{]}
+
+  Verifica esto de manera computacional hasta
+  {\textbackslash(n=10\textbackslash)}. Luego, da una demostraciÃ³n
+  combinatoria (por doble conteo) y una algebraica (por inducciÃ³n).
+\item
+  Lee el artÃ­culo Â«Contando de dos formas distintasÂ» en la revista
+  Tzaloa 2011-3 para conocer mÃ¡s acerca del principio de doble conteo:
+  \url{https://www.ommenlinea.org/wp-content/uploads/2011/09/Tzaloa-3-2011.pdf}
+\item
+  La siguente expresiÃ³n se puede simplificar a un Ãºnico coeficiente
+  binomial:
+
+  \textbackslash{[}\textbackslash binom\{n\}\{0\}\^{}2+\textbackslash binom\{n\}\{1\}\^{}2+\textbackslash ldots+\textbackslash binom\{n\}\{n\}\^{}2.\textbackslash{]}
+
+  Â¿A cuÃ¡l? Para determinar esto, realiza una exploraciÃ³n
+  computacional que calcule la expresiÃ³n en los primeros casos. Luego,
+  compara el resultado con otros coeficientes binomiales. Haz una
+  conjetura. Finalmente, realiza una demostraciÃ³n por doble conteo de
+  la identidad que propones.
+\end{enumerate}
+
+\href{Casillas.html}{\emph{}}
+
+anterior
+
+Principio de las casillas
+
+\href{Induccion.html}{}
+
+siguiente
+
+Principio de inducciÃ³n
+
+\emph{}
+
+\emph{} Contenido
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[principio-de-doble-conteo]{Principio de doble conteo}
+\item
+  \hyperref[coeficientes-binomiales-y-su-formula]{Coeficientes
+  binomiales y su fÃ³rmula}
+\item
+  \hyperref[la-formula-de-pascal]{La fÃ³rmula de Pascal}
+\item
+  \hyperref[exploracion-computacional-del-triangulo-de-pascal]{ExploraciÃ³n
+  computacional del triÃ¡ngulo de Pascal}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+Por Leonardo Ignacio MartÃ­nez Sandoval
+
+Â© Copyright 2022.\\
+
+\end{document}

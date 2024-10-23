@@ -1,0 +1,322 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{DejaVu Serif}
+    \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{spanish}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{DejaVu Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Bienvenida --- MatemÃ¡ticas Discretas para Ciencia de Datos},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Bienvenida --- MatemÃ¡ticas Discretas para Ciencia de Datos}
+\author{}
+\date{}
+
+
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+        \setmainfont{DejaVu Serif}
+        \setmonofont{DejaVu Sans Mono}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{graphicx}
+        \usepackage{hyperref}
+        \usepackage[spanish]{babel}
+        
+\begin{document}
+\maketitle
+
+\phantomsection\label{main-content}
+{}
+
+\emph{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{_sources/intro.md}{{ \emph{} } {.md}}
+\item
+  { \emph{} } {.pdf}
+\end{itemize}
+
+{ \emph{} }
+
+{}
+
+\phantomsection\label{jb-print-docs-body}
+\section{Bienvenida}\label{bienvenida}
+
+\phantomsection\label{print-main-content}
+\phantomsection\label{jb-print-toc}
+\subsection{Contenido}\label{contenido}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[preambulo]{PreÃ¡mbulo}
+\item
+  \hyperref[pre-requisitos]{Pre-requisitos}
+\item
+  \hyperref[temario]{Temario}
+\end{itemize}
+
+\phantomsection\label{searchbox}
+
+\phantomsection\label{bienvenida}
+\section{\texorpdfstring{Bienvenida\hyperref[bienvenida]{\#}}{Bienvenida\#}}\label{bienvenida-1}
+
+Â¡Bienvenido al libro online de MatemÃ¡ticas Discretas para Ciencia de
+Datos!
+
+\phantomsection\label{preambulo}
+\subsection{\texorpdfstring{PreÃ¡mbulo\hyperref[preambulo]{\#}}{PreÃ¡mbulo\#}}\label{preuxe3mbulo}
+
+Dos de las habilidades complementarias de mayor utilidad en una carrera
+de Ciencia de Datos son el uso de teorÃ­a de grÃ¡ficas y el diseÃ±o de
+algoritmos. Sin embargo, usualmente se requiere de mucho tiempo para
+entender con profundidad los fundamentos matemÃ¡ticos y de ciencias de
+la computaciÃ³n detrÃ¡s de estos temas. En ocasiones, entender todos los
+detalles requiere de tomar varios cursos a nivel universitario. Si bien
+esto llevarÃ­a a un entendimiento a detalle de la teorÃ­a, usualmente no
+hay el tiempo necesario para aprender todo esto dentro de los ambiciosos
+programas de estudio en ciencias de datos.
+
+El objetivo de este libro es dar una muy buena introducciÃ³n a estos
+temas. El tratamiento no tiene la profundidad de tomar varios cursos
+completos. Sin embargo, el material sÃ­ es suficiente para desarrollar un
+fuerte nivel de abstracciÃ³n y para cubrir la mayorÃ­a de las necesidades
+prÃ¡cticas de un cientÃ­fico de datos.
+
+Se cubre el material desde dos perspectivas. Por un lado, se desarrolla
+teorÃ­a matemÃ¡tica y computacional de manera formal, dando definiciones,
+ejemplos, proposiciones, teoremas y demostraciones cada que sea
+pertinente. Por otro lado, se desarrolla el aspecto prÃ¡ctico mediante
+descripciones de algoritmos, pseudocÃ³digos y numerosas celdas para
+ejecutar. El lenguaje de programaciÃ³n elegido es Python y se usan
+varias librerÃ­as abiertas.
+
+Al final de cada tema se presenta una secciÃ³n de Tarea Moral, cuyo
+objetivo es continuar practicando de manera autodidacta el contenido
+cubierto. AdemÃ¡s, al final de cada capÃ­tulo se presenta una lista de
+ejercicios teÃ³ricos y de implementaciÃ³n.
+
+\subsection{\texorpdfstring{Pre-requisitos\hyperref[pre-requisitos]{\#}}{Pre-requisitos\#}}\label{pre-requisitos}
+
+En tÃ©rminos de matemÃ¡ticas, supondremos que el lector tiene una
+formaciÃ³n buena correspondiente a los primeros dos semestres de una
+licenciatura en matemÃ¡ticas o algo afÃ­n. EspecÃ­ficamente, supondremos
+cierta familiaridad con los temas de inducciÃ³n, sucesiones, conteo y
+cÃ¡lculo. Supondremos tambiÃ©n que el lector estÃ¡ acostumbrado a seguir
+una estructura de definiciones, proposiciones, lemas, teoremas,
+corolarios. En tÃ©rminos de computaciÃ³n teÃ³rica no supondremos
+pre-requisitos.
+
+La mayor parte del texto puede leerse sÃ³lo de manera teÃ³rica. Sin
+embargo, para entender con profundidad los temas y llevarlos a la
+prÃ¡ctica, recomendamos que el lector estudie y juegue con todo el
+cÃ³digo en Python que se propone a lo largo del libro. Para ello,
+supondremos un manejo bÃ¡sico de Python: tipos de datos, asignaciones,
+comparaciones, ciclos, condicionales, etc.
+
+\subsection{\texorpdfstring{Temario\hyperref[temario]{\#}}{Temario\#}}\label{temario}
+
+Nota
+
+Este es un libro en elaboraciÃ³n. En el siguiente temario puedes
+encontrar indicados los capÃ­tulos con mÃ¡s progreso.
+
+Parte 1: Fundamentos combinatorios
+
+Buscar un patrÃ³n
+
+Principio de las casillas
+
+Principio de doble conteo y coeficientes binomiales
+
+Principio de inducciÃ³n
+
+Principio de recursiÃ³n y recursiones lineales
+
+Principio extremo
+
+Parte 2: TeorÃ­a de grÃ¡ficas
+
+GrÃ¡ficas, grados y lema de Euler
+
+Caminos, conexidad y distancia
+
+Caminos cerrados, circuitos y ciclos
+
+Recorrer toda una grÃ¡fica
+
+Ã?rboles y bosques
+
+GrÃ¡ficas bipartitas
+
+Emparejamientos y teorema de Hall
+
+Conjuntos independientes y coloraciones
+
+ColoraciÃ³n de aristas y teorema de Ramsey
+
+SubgrÃ¡ficas completas y teorema de TurÃ¡n
+
+Parte 3: DiseÃ±o y anÃ¡lisis de algoritmos
+
+Problemas y algoritmos
+
+Algoritmos incorrectos
+
+Algoritmos correctos
+
+Modelo RAM y pensamiento asintÃ³tico
+
+NotaciÃ³n O grande y similares
+
+Propiedades de la notaciÃ³n O grande
+
+Ejemplos de anÃ¡lisis de eficiencia
+
+El problema de ordenar
+
+Ordenar cuadrÃ¡ticamente
+
+Estructuras de datos vs tipos de datos abstractos
+
+Diccionarios y Ã¡rboles de bÃºsqueda balanceados
+
+Ordenar eficientemente
+
+Aplicaciones de ordenar
+
+Parte 4: HeurÃ­sticas de creaciÃ³n de algoritmos
+
+Tipos de problemas algorÃ­tmicos
+
+Espacio de estados
+
+ExploraciÃ³n exhaustiva
+
+Recortes al espacio de estados
+
+Algoritmos voraces
+
+Divide y conquista
+
+RecursiÃ³n y teorema maestro
+
+Backtrack en bÃºsquedas combinatorias
+
+MÃ¡s ejemplos de backtrack
+
+ProgramaciÃ³n dinÃ¡mica
+
+MÃ©todos probabilistas
+
+Parte 5: Algoritmos en teorÃ­a de grÃ¡ficas
+
+Implementaciones de grÃ¡ficas y variantes
+
+Uso bÃ¡sico de NetworkX
+
+BÃºsqueda por anchura
+
+Aplicaciones de bÃºsqueda por anchura
+
+BÃºsqueda por profundidad
+
+Aplicaciones de bÃºsqueda por profundidad
+
+Ã?rboles de peso mÃ­nimo: algoritmos de Prim y Kruskal
+
+Caminos de peso mÃ­nimo: algoritmos de Dijkstra y Floyd-Warshall
+
+Redes, flujos y flujos mÃ¡ximos
+
+Algoritmos de Ford-Fulkerson y Edmonds-Karp
+
+Reducciones algorÃ­tmicas y clases P, NP y NP-completo
+
+Problemas de grÃ¡ficas NP-completos
+
+\href{P1/IntroCombinatoria.html}{}
+
+siguiente
+
+Fundamentos de combinatoria
+
+\emph{}
+
+\emph{} Contenido
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[preambulo]{PreÃ¡mbulo}
+\item
+  \hyperref[pre-requisitos]{Pre-requisitos}
+\item
+  \hyperref[temario]{Temario}
+\end{itemize}
+
+Por Leonardo Ignacio MartÃ­nez Sandoval
+
+Â© Copyright 2022.\\
+
+\end{document}

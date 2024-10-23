@@ -1,0 +1,549 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{DejaVu Serif}
+    \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\usepackage{svg}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{spanish}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{DejaVu Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Principio de las casillas --- MatemÃ¡ticas Discretas para Ciencia de Datos},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Principio de las casillas --- MatemÃ¡ticas Discretas para Ciencia
+de Datos}
+\author{}
+\date{}
+
+
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+        \setmainfont{DejaVu Serif}
+        \setmonofont{DejaVu Sans Mono}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{graphicx}
+        \usepackage{hyperref}
+        \usepackage[spanish]{babel}
+        
+\begin{document}
+\maketitle
+
+\phantomsection\label{main-content}
+{}
+
+\emph{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{../_sources/P1/Casillas.ipynb}{{ \emph{} } {.ipynb}}
+\item
+  { \emph{} } {.pdf}
+\end{itemize}
+
+{ \emph{} }
+
+{}
+
+\phantomsection\label{jb-print-docs-body}
+\section{Principio de las casillas}\label{principio-de-las-casillas}
+
+\phantomsection\label{print-main-content}
+\phantomsection\label{jb-print-toc}
+\subsection{Contenido}\label{contenido}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[principio-de-las-casillas-version-basica]{Principio de las
+  casillas, versiÃ³n bÃ¡sica}
+\item
+  \hyperref[principio-de-las-casillas-version-con-mas-objetos]{Principio
+  de las casillas, versiÃ³n con mÃ¡s objetos}
+\item
+  \hyperref[principio-de-las-casillas-version-infinita]{Principio de las
+  casillas, versiÃ³n infinita}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+\phantomsection\label{searchbox}
+
+\phantomsection\label{principio-de-las-casillas}
+\section{\texorpdfstring{Principio de las
+casillas\hyperref[principio-de-las-casillas]{\#}}{Principio de las casillas\#}}\label{principio-de-las-casillas-1}
+
+\phantomsection\label{introduccion}
+\subsection{\texorpdfstring{IntroducciÃ³n\hyperref[introduccion]{\#}}{IntroducciÃ³n\#}}\label{introducciuxe3uxb3n}
+
+El principio de las casillas es una idea sencilla. A grandes rasgos, nos
+dice que si hay muchos elementos que se deben repartir en pocas
+casillas, entonces debe haber una casilla con muchos objetos. Un ejemplo
+muy sencillo es que si tenemos 13 personas, entonces debe haber por lo
+menos dos que compartan el mismo mes de cumpleaÃ±os. Aunque la idea de
+principio de las casillas sea simple, se presta a muchas aplicaciones y
+generalizaciones.
+
+\phantomsection\label{principio-de-las-casillas-version-basica}
+\subsection{\texorpdfstring{Principio de las casillas, versiÃ³n
+bÃ¡sica\hyperref[principio-de-las-casillas-version-basica]{\#}}{Principio de las casillas, versiÃ³n bÃ¡sica\#}}\label{principio-de-las-casillas-versiuxe3uxb3n-buxe3sica}
+
+El principio de las casillas, en su versiÃ³n mÃ¡s bÃ¡sica, dice lo
+siguiente:
+
+\textbf{ProposiciÃ³n.} Si se tienen {\textbackslash(n+1\textbackslash)}
+objetos que se deben repartir en {\textbackslash(n\textbackslash)}
+casillas, entonces debe haber al menos una casilla en donde se colocaron
+al menos dos objetos.
+
+Veamos algunos problemas en donde podemos aplicar este principio para
+resolverlos.
+
+\textbf{Problema.} Encuentra la mÃ¡xima cantidad de reyes de ajedrez que
+puedes poner en un tablero de {\textbackslash(5\textbackslash times
+5\textbackslash)} sin que se ataquen entre sÃ­.
+
+\emph{SoluciÃ³n.} Hay una forma sencilla de poner
+{\textbackslash(9\textbackslash)} reyes sin que se ataquen entre sÃ­.
+
+\pandocbounded{\includesvg[keepaspectratio]{../_images/reyes-acomodo.svg}}
+
+Â¿CÃ³mo podemos estar totalmente seguros de que no hay ninguna forma de
+poner {\textbackslash(10\textbackslash)} o mÃ¡s reyes? Dividamos el
+tablero como sigue:
+
+\pandocbounded{\includesvg[keepaspectratio]{../_images/reyes-casillas.svg}}
+
+AquÃ­ hemos creado {\textbackslash(9\textbackslash)} regiones. Si
+pusiÃ©ramos {\textbackslash(10\textbackslash)} reyes, entonces habrÃ­a
+dos que caen en la misma regiÃ³n. Dos reyes en una misma regiÃ³n
+claramente se atacarÃ­an entre sÃ­. AsÃ­, es imposible poner
+{\textbackslash(10\textbackslash)} reyes o mÃ¡s, y por lo tanto lo
+mÃ¡ximo que podemos poner son {\textbackslash(9\textbackslash)}.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+En el problema anterior las casillas son las regiones que creamos. Las
+casillas no necesariamente son algo geomÃ©trico, y pueden referirse a
+ideas mÃ¡s abstractas.
+
+\textbf{Problema.} Muestra que para cualquier entero positivo
+{\textbackslash(n\textbackslash)}, existe un mÃºltiplo de
+{\textbackslash(n\textbackslash)} que consiste de puros dÃ­gidos cero y
+uno.
+
+\emph{SoluciÃ³n.} Consideremos el conjunto de
+{\textbackslash(n+1\textbackslash)} nÃºmeros
+{\textbackslash(S=\textbackslash\{1,11,111,\textbackslash ldots,11\textbackslash cdots
+1\textbackslash\}\textbackslash)}, en donde el Ãºltimo nÃºmero tiene
+{\textbackslash(n+1\textbackslash)} unos. Cuando dividimos cualquier
+entero entre {\textbackslash(n\textbackslash)}, sÃ³lo hay
+{\textbackslash(n\textbackslash)} posibilidades para el residuo que
+pueden dejar:
+{\textbackslash(0,1,\textbackslash ldots,n-1\textbackslash)}. Como hay
+{\textbackslash(n+1\textbackslash)} nÃºmeros en
+{\textbackslash(S\textbackslash)} y {\textbackslash(n\textbackslash)}
+posibles residuos, por el principio de las casillas hay dos elementos en
+{\textbackslash(S\textbackslash)} que dejan el mismo residuo al
+dividirlos entre {\textbackslash(n\textbackslash)}, digamos
+{\textbackslash(a\textbackslash)} y {\textbackslash(b\textbackslash)}
+con {\textbackslash(a\textbackslash lt b\textbackslash)}. De esta
+manera, {\textbackslash(b-a\textbackslash)} es un nÃºmero que es
+mÃºltiplo de {\textbackslash(n\textbackslash)} y que consiste
+Ãºnicamente de ceros y unos.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\phantomsection\label{principio-de-las-casillas-version-con-mas-objetos}
+\subsection{\texorpdfstring{Principio de las casillas, versiÃ³n con mÃ¡s
+objetos\hyperref[principio-de-las-casillas-version-con-mas-objetos]{\#}}{Principio de las casillas, versiÃ³n con mÃ¡s objetos\#}}\label{principio-de-las-casillas-versiuxe3uxb3n-con-muxe3s-objetos}
+
+Si aumentamos la cantidad de objetos que debemos repartir, pero dejamos
+fija la cantidad de casillas, entonces es posible garantizar todavÃ­a
+mÃ¡s: que hay una casilla con muchos objetos. Por ejemplo, si tenemos
+{\textbackslash(25\textbackslash)} personas, ahora podemos garantizar
+que hay {\textbackslash(3\textbackslash)} que tienen el mismo mes de
+cumpleaÃ±os. La versiÃ³n precisa estÃ¡ dada por el siguiente resultado:
+
+\textbf{ProposiciÃ³n.} Si se tienen {\textbackslash(kn+1\textbackslash)}
+objetos o mÃ¡s que se deben repartir en
+{\textbackslash(n\textbackslash)} casillas, entonces debe haber al menos
+una casilla en donde se colocaron al menos
+{\textbackslash(k+1\textbackslash)} objetos.
+
+La justificaciÃ³n es sencilla argumentando al revÃ©s: si en cada casilla
+hubiera a lo mucho {\textbackslash(k\textbackslash)} objetos, entonces
+en total tendrÃ­amos a lo mucho {\textbackslash(kn\textbackslash)}
+objetos.
+
+\textbf{Problema.} Demuestra que si se colocan
+{\textbackslash(9\textbackslash)} puntos dentro de un cuadrado de lado
+{\textbackslash(4\textbackslash)}, entonces habrÃ¡ tres de ellos que
+hagan un triÃ¡ngulo con Ã¡rea menor o igual a
+{\textbackslash(2\textbackslash)}.
+
+\emph{SoluciÃ³n.} Dividamos al cuadrado en
+{\textbackslash(4\textbackslash)} cuadraditos de lado
+{\textbackslash(2\textbackslash)}. Como tenemos
+{\textbackslash(9=2\textbackslash cdot 4 +1\textbackslash)} puntos,
+entonces hay uno de estos cuadraditos que tiene a tres de los puntos que
+colocamos.
+
+\pandocbounded{\includesvg[keepaspectratio]{../_images/cuadrado22.svg}}
+
+Afirmamos que el Ã¡rea de un triÃ¡ngulo
+{\textbackslash(ABC\textbackslash)} dentro de un cuadrado de lado
+{\textbackslash(2\textbackslash)} es como mucho
+{\textbackslash(2\textbackslash)}.
+
+Lo primero que observamos es que podemos suponer que los vÃ©rtices
+estÃ¡n sobre los lados del cuadrado. Si, por ejemplo, el vÃ©rtice
+{\textbackslash(A\textbackslash)} no estÃ¡ en uno de los lados del
+cuadrado, entonces podemos prolongar el rayo
+{\textbackslash(BA\textbackslash)} para intersectar a un lado del
+cuadrado en un punto {\textbackslash(A\textquotesingle\textbackslash)}.
+El triÃ¡ngulo {\textbackslash(A\textquotesingle BC\textbackslash)} tiene
+mayor Ã¡rea que el {\textbackslash(ABC\textbackslash)} por contenerlo, y
+por lo tanto basta con ver que
+{\textbackslash(A\textquotesingle BC\textbackslash)} tiene Ã¡rea menor o
+igual a {\textbackslash(2\textbackslash)}.
+
+\pandocbounded{\includesvg[keepaspectratio]{../_images/hacia-lado.svg}}
+
+Lo siguiente es argumentar por quÃ© podemos suponer que cada vÃ©rtice
+estÃ¡ sobre un vÃ©rtice del cuadrado. Supongamos que no. Si
+{\textbackslash(A\textbackslash)} estÃ¡ en el lado
+{\textbackslash(PQ\textbackslash)} del cuadrado, pero no en el vÃ©rtice
+{\textbackslash(P\textbackslash)} Ã³ {\textbackslash(Q\textbackslash)},
+entonces podemos mover a {\textbackslash(A\textbackslash)} hacia
+{\textbackslash(P\textbackslash)} o hacia
+{\textbackslash(Q\textbackslash)} y preservar el Ã¡rea o aumentarla.
+
+\pandocbounded{\includesvg[keepaspectratio]{../_images/hacia-vertice.svg}}
+
+De este modo, podemos llevar cualquier triÃ¡ngulo a un triÃ¡ngulo
+{\textbackslash(ABC\textbackslash)} de Ã¡rea mayor y con vÃ©rtices sobre
+los vÃ©rtices del cuadrado. Cualquier triÃ¡ngulo asÃ­ o bien es
+degenerado, o bien es de Ã¡rea
+{\textbackslash(\textbackslash frac\{2\textbackslash cdot
+2\}\{2\}=2\textbackslash)}.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+Una versiÃ³n equivalente es la siguiente.
+
+\textbf{ProposiciÃ³n.} Si se tienen {\textbackslash(m\textbackslash)}
+objetos o mÃ¡s que se deben repartir en
+{\textbackslash(n\textbackslash)} casillas, entonces debe haber al menos
+una casilla en donde se colocaron al menos
+{\textbackslash(\textbackslash lceil
+\textbackslash frac\{m\}\{n\}\textbackslash rceil\textbackslash)}
+objetos.
+
+Como ejemplo sencillo, si tenemos {\textbackslash(100\textbackslash)}
+personas, entonces hay
+{\textbackslash(\textbackslash lceil\textbackslash frac\{100\}\{12\}\textbackslash rceil=9\textbackslash)}
+de ellas que tienen el mismo mes de cumpleaÃ±os. Veamos un problema un
+poco mÃ¡s elaborado.
+
+\textbf{Problema.} Se tienen {\textbackslash(601\textbackslash)}
+caballos en un tablero de ajedrez de
+{\textbackslash(30\textbackslash times 30\textbackslash)}. Demuestra que
+hay dos de ellos que se atacan entre sÃ­.
+
+\emph{SoluciÃ³n.} Tracemos rayas cada 3 filas y cada 3 columnas para
+dividir a todo el tablero en {\textbackslash(100\textbackslash)}
+regiones de {\textbackslash(3\textbackslash times 3\textbackslash)} cada
+una. Como hay {\textbackslash(501\textbackslash)} caballos, entonces hay
+una de ellas en donde colocamos por lo menos
+{\textbackslash(\textbackslash lceil\textbackslash frac\{501\}\{100\}\textbackslash rceil=6\textbackslash)}
+caballos. Veremos que en esta regiÃ³n hay dos caballos que se atacan
+entre sÃ­. Esto lo hacemos argumentando mediante otro principio de las
+casillas como sigue. Nombremos las casillas del tablero de
+{\textbackslash(3\textbackslash times 3\textbackslash)} de la siguiente
+manera:
+
+\pandocbounded{\includesvg[keepaspectratio]{../_images/caballos-3.svg}}
+
+Tenemos {\textbackslash(5\textbackslash)} regiones: las de la letra
+{\textbackslash(A\textbackslash)}, la letra
+{\textbackslash(B\textbackslash)}, la letra
+{\textbackslash(C\textbackslash)}, la letra
+{\textbackslash(D\textbackslash)} y la letra
+{\textbackslash(E\textbackslash)}. Por el principio de las casillas
+bÃ¡sico, como hay {\textbackslash(6\textbackslash)} caballos en este
+tablero de {\textbackslash(3\textbackslash times 3\textbackslash)}, hay
+por lo menos dos en una misma regiÃ³n. No puede ser la regiÃ³n
+{\textbackslash(E\textbackslash)} pues esa consiste de una sola casilla.
+Con esto terminamos pues cualquiera de las otras regiones consiste de
+dos casillas en donde los caballos se pueden atacar entre sÃ­.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\phantomsection\label{principio-de-las-casillas-version-infinita}
+\subsection{\texorpdfstring{Principio de las casillas, versiÃ³n
+infinita\hyperref[principio-de-las-casillas-version-infinita]{\#}}{Principio de las casillas, versiÃ³n infinita\#}}\label{principio-de-las-casillas-versiuxe3uxb3n-infinita}
+
+Una Ãºltima versiÃ³n del principio de las casillas que veremos ahora es
+la versiÃ³n infinita. Dice lo siguiente.
+
+\textbf{ProposiciÃ³n.} Si se tiene una infinidad de objetos que se deban
+repartir en una cantidad finita de casillas, entonces debe haber al
+menos una casilla con una infinidad de objetos.
+
+Veamos un ejemplo sencillo. Tomemos
+{\textbackslash(\textbackslash pi\textbackslash)} en su expresiÃ³n
+decimal:
+
+\textbackslash{[}\textbackslash pi=3.1415926535\textbackslash ldots\textbackslash{]}
+
+Notemos que el {\textbackslash(5\textbackslash)} aparece tres veces
+hasta aquÃ­. Â¿SerÃ¡ que aparece una infinidad de veces en la expresiÃ³n
+decimal de {\textbackslash(\textbackslash pi\textbackslash)}? Nadie lo
+sabe, es una pregunta abierta. Y el {\textbackslash(5\textbackslash)} no
+tiene nada de particular. Para ninguno de los dÃ­gitos se sabe si aparece
+una infinidad de veces en la expresiÃ³n decimal de
+{\textbackslash(\textbackslash pi\textbackslash)} o no. Sin embargo, sÃ­
+hay algo que podemos decir. Como hay una infinidad de dÃ­gitos y
+Ãºnicamente existen los dÃ­gitos de {\textbackslash(0\textbackslash)} a
+{\textbackslash(9\textbackslash)}, entonces por el principio de las
+casillas debe existir uno de ellos que se repite una infinidad de veces
+dentro de {\textbackslash(\textbackslash pi\textbackslash)}. Â¿CuÃ¡l?
+QuiÃ©n sabe.
+
+Terminemos con un problema mÃ¡s que usa el principio de las casillas en
+su versiÃ³n infinita.
+
+\textbf{Problema.} Se tiene un tablero de
+{\textbackslash(n\textbackslash)} casillas colocadas horizontalmente. En
+cada casilla se ha colocado una flecha, ya sea apuntando hacia la
+izquierda, o hacia la derecha. Una hormiga comienza en la casilla de
+hasta la izquierda. Se va a mover de acuerdo a las siguientes reglas:
+
+\begin{itemize}
+\item
+  Si estÃ¡ en la casilla de hasta la izquierda, y la flecha apunta a la
+  izquierda, la hormiga no hace nada y la flecha apunta ahora a la
+  derecha.
+\item
+  Si estÃ¡ en la casilla de hasta la derecha, y la flecha apunta a la
+  derecha, entonces la hormiga gana el juego y sale del tablero.
+\item
+  En cualquier otro caso, la hormiga se mueve a la direcciÃ³n que indica
+  la flecha, y ya que pasÃ³ esto, la flecha apunta hacia el otro lado.
+\end{itemize}
+
+Muestra que sin importar cÃ³mo estÃ¡n colocadas las flechas
+inicialmente, la hormiga gana.
+
+QuizÃ¡s quieras jugar un poco con el problema antes de ver la soluciÃ³n.
+La siguiente funciÃ³n recibe como argumentos la variable {\texttt{n}}
+que da el tamaÃ±o del tablero, la variable {\texttt{flechas}} a la que
+se le puede poner la configuraciÃ³n inicial que se desee y la variable
+{\texttt{pasos}} que indica cuÃ¡ntos pasos se quieren dar como mÃ¡ximo.
+Va mostrando el tablero, en donde la {\texttt{x}} indica a la hormiga y
+avisa cuando haya salido.
+
+\begin{verbatim}
+def hormiga(n,tablero,maxpasos):
+    posicion=0
+    tablero=list(tablero)
+    for j in range(maxpasos):
+        if posicion==0 and tablero[posicion]=="<":
+            tablero[posicion]=">"
+        elif posicion==n-1 and tablero[posicion]==">":
+            print("La hormiga saliÃ³")
+            return
+        else:
+            if tablero[posicion]==">":
+                tablero[posicion]="<"
+                posicion+=1
+            elif tablero[posicion]=="<":
+                tablero[posicion]=">"
+                posicion-=1
+        print(posicion*' '+'x'+(n-posicion-1)*" "+'\n'+"".join(tablero))
+
+hormiga(4,'<<>>',10)
+\end{verbatim}
+
+\begin{verbatim}
+x   
+><>>
+ x  
+<<>>
+x   
+<>>>
+x   
+>>>>
+ x  
+<>>>
+  x 
+<<>>
+   x
+<<<>
+La hormiga saliÃ³
+\end{verbatim}
+
+\emph{SoluciÃ³n.} Vamos a demostrar que la hormiga siempre sale. Para
+ello, procederemos por contradicciÃ³n. Supongamos que la hormiga nunca
+sale. Entonces, se queda siempre dentro del tablero, dando una infinidad
+de pasos. Como sÃ³lo hay una cantidad finita
+{\textbackslash(n\textbackslash)} de casillas dentro del tablero,
+entonces hay alguna casilla {\textbackslash(C\textbackslash)} que la
+hormiga visita una infinidad de veces.
+
+Pero como en cada visita las flechas de
+{\textbackslash(C\textbackslash)} alternan direcciÃ³n, entonces tambiÃ©n
+se visita una infinidad de veces las casillas adyacentes a
+{\textbackslash(C\textbackslash)}. Pero este argumento aplica tambiÃ©n
+para las adyacentes a ellas, y en general, para todas las casillas. De
+este modo, todas las casillas son visitadas una infinidad de veces. En
+partÃ­cular, la casilla de hasta la derecha es visitada una infinidad de
+veces. AsÃ­, como mucho tras dos veces de visitarla la hormiga saldrÃ­a
+del tablero. Esto da la contradicciÃ³n buscada.
+{{\textbackslash(\textbackslash square\textbackslash)}}
+
+\subsection{\texorpdfstring{Tarea
+moral\hyperref[tarea-moral]{\#}}{Tarea moral\#}}\label{tarea-moral}
+
+Los siguientes problemas te ayudarÃ¡n a practicar lo visto en esta
+entrada. Para resolverlos, necesitarÃ¡s usar herramientas matemÃ¡ticas,
+computacionales o ambas.
+
+\begin{enumerate}
+\item
+  Investiga aproximadamente cuÃ¡ntos pelos tiene una persona en el
+  cabello. Usa esto y el principio de las casillas para mostrar que en
+  MÃ©xico hay dos personas con el mismo nÃºmero de pelos en el cabello.
+  Â¿HabrÃ¡ {\textbackslash(100\textbackslash)} personas con la misma
+  cantidad de pelos en el cabello? Explica tus suposiciones.
+\item
+  Â¿CuÃ¡l es la mÃ¡xima cantidad de alfiles que se pueden colocar en un
+  tablero de ajedrez sin que se ataquen entre sÃ­?
+\item
+  Demuestra que si se tienen {\textbackslash(9\textbackslash)} puntos
+  con coordenadas enteras en
+  {\textbackslash(\textbackslash mathbb\{R\}\^{}3\textbackslash)},
+  entonces hay dos de ellos cuyo punto medio tambiÃ©n tiene coordenadas
+  enteras.
+\item
+  Demuestra que para cualquier entero positivo
+  {\textbackslash(k\textbackslash)} se tiene que la sucesiÃ³n de
+  Fibonacci tiene una infinidad de mÃºltiplos de
+  {\textbackslash(k\textbackslash)}.
+\item
+  Sea {\textbackslash(k\textbackslash)} un entero positivo. Se pintan
+  todos los puntos con coordenadas enteras del plano con
+  {\textbackslash(k\textbackslash)} colores. Muestra que sin importar
+  cÃ³mo sea la coloraciÃ³n, siempre existe un rectÃ¡ngulo con lados
+  paralelos a los ejes y cuyos vÃ©rtices son cuatro puntos de
+  coordenadas enteras pintados del mismo color.
+\end{enumerate}
+
+\href{BuscarPatron.html}{\emph{}}
+
+anterior
+
+Buscar un patrÃ³n
+
+\href{DobleConteo.html}{}
+
+siguiente
+
+Principio de doble conteo y coeficientes binomiales
+
+\emph{}
+
+\emph{} Contenido
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[principio-de-las-casillas-version-basica]{Principio de las
+  casillas, versiÃ³n bÃ¡sica}
+\item
+  \hyperref[principio-de-las-casillas-version-con-mas-objetos]{Principio
+  de las casillas, versiÃ³n con mÃ¡s objetos}
+\item
+  \hyperref[principio-de-las-casillas-version-infinita]{Principio de las
+  casillas, versiÃ³n infinita}
+\item
+  \hyperref[tarea-moral]{Tarea moral}
+\end{itemize}
+
+Por Leonardo Ignacio MartÃ­nez Sandoval
+
+Â© Copyright 2022.\\
+
+\end{document}

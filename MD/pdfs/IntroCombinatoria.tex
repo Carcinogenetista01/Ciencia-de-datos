@@ -1,0 +1,180 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+    \setmainfont[]{DejaVu Serif}
+    \setmonofont[]{DejaVu Sans Mono}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{spanish}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{DejaVu Serif}
+\fi
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Fundamentos de combinatoria --- MatemÃ¡ticas Discretas para Ciencia de Datos},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Fundamentos de combinatoria --- MatemÃ¡ticas Discretas para
+Ciencia de Datos}
+\author{}
+\date{}
+
+
+        \usepackage{fontspec}
+        \usepackage{unicode-math}
+        \setmainfont{DejaVu Serif}
+        \setmonofont{DejaVu Sans Mono}
+        \usepackage{amsmath}
+        \usepackage{amssymb}
+        \usepackage{graphicx}
+        \usepackage{hyperref}
+        \usepackage[spanish]{babel}
+        
+\begin{document}
+\maketitle
+
+\phantomsection\label{main-content}
+{}
+
+\emph{}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{../_sources/P1/IntroCombinatoria.ipynb}{{ \emph{} } {.ipynb}}
+\item
+  { \emph{} } {.pdf}
+\end{itemize}
+
+{ \emph{} }
+
+{}
+
+\phantomsection\label{jb-print-docs-body}
+\section{Fundamentos de combinatoria}\label{fundamentos-de-combinatoria}
+
+\phantomsection\label{print-main-content}
+\phantomsection\label{jb-print-toc}
+\subsection{Contenido}\label{contenido}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[temario]{Temario}
+\end{itemize}
+
+\phantomsection\label{searchbox}
+
+\phantomsection\label{fundamentos-de-combinatoria}
+\section{\texorpdfstring{Fundamentos de
+combinatoria\hyperref[fundamentos-de-combinatoria]{\#}}{Fundamentos de combinatoria\#}}\label{fundamentos-de-combinatoria-1}
+
+\phantomsection\label{introduccion}
+\subsection{\texorpdfstring{IntroducciÃ³n\hyperref[introduccion]{\#}}{IntroducciÃ³n\#}}\label{introducciuxe3uxb3n}
+
+En las primeras dos partes de este texto introducimos algunos
+fundamentos matemÃ¡ticos de las matemÃ¡ticas discretas para la ciencia
+de datos. Esta primer parte consiste de repasar y profundizar en algunas
+herramientas matemÃ¡ticas como la inducciÃ³n, el principio de las
+casillas, el principio extremo, entre otras.
+
+\subsection{\texorpdfstring{Temario\hyperref[temario]{\#}}{Temario\#}}\label{temario}
+
+\textbf{Fundamentos combinatorios}
+
+\begin{itemize}
+\item
+  Buscar un patrÃ³n
+\item
+  Principio de las casillas
+\item
+  Principio de doble conteo y coeficientes binomiales
+\item
+  Principio de inducciÃ³n
+\item
+  Principio de recursiÃ³n
+\item
+  Principio extremo
+\end{itemize}
+
+\href{../intro.html}{\emph{}}
+
+anterior
+
+Bienvenida
+
+\href{BuscarPatron.html}{}
+
+siguiente
+
+Buscar un patrÃ³n
+
+\emph{}
+
+\emph{} Contenido
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[introduccion]{IntroducciÃ³n}
+\item
+  \hyperref[temario]{Temario}
+\end{itemize}
+
+Por Leonardo Ignacio MartÃ­nez Sandoval
+
+Â© Copyright 2022.\\
+
+\end{document}
